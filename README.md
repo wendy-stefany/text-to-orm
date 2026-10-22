@@ -50,7 +50,7 @@ text-to-orm-git/
 ├── evaluate_benchmark.py                 # Script principal de ejecución del benchmark
 ├── README.md                             # Documentación del proyecto
 └── requirements.txt                      # Dependencias del proyecto
-
+```
 ---
 
 ## 🚀 Reproducibilidad y Ejecución
@@ -70,21 +70,29 @@ Clona el repositorio e instala las dependencias necesarias en un entorno virtual
 # Clonar el repositorio de la investigación
 git clone https://github.com/wendy-stefany/text-to-orm 
 cd text-to-orm
+```
 
+```bash
 # Crear y activar el entorno virtual
 python3 -m venv venv
 source venv/bin/activate  
-
 # En Windows: 
 venv\Scripts\activate
 
+```
+
+```bash
 # Instalar dependencias del proyecto
 pip install -r requirements.txt
+```
+
 
 ### 2. Configuración de Variables de Entorno
 
 # Crea un archivo .env en la raíz del proyecto basándote en la plantilla de ejemplo y configura tus credenciales de API
+```bash
 cp .env.example .env
+```
 
 # Asegúrate de definir las claves requeridas dentro de .env
 
@@ -93,10 +101,15 @@ GEMINI_API_KEY=tu_api_key_aqui
 ### 3. Ejecución del Benchmark Comparativo
 
 # 1. (Opcional) Extraer el esquema contextual de los modelos PHP mediante AST
+```bash
 python build_models_schema.py
-
+```
 # 2. Ejecutar la evaluación del benchmark experimental (C1 vs C2)
+```bash
 python evaluate_benchmark.py
+```
 
 # 3. Procesar resultados, generar gráficos (PNG) y reportes sintéticos (MD)
+```bash
 python analyze_qualitative.py
+```
