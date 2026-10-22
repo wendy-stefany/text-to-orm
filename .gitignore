@@ -1,0 +1,30 @@
+# --- Credenciales y Variables de Entorno (CRÍTICO) ---
+.env
+.env.local
+.env.*.local
+
+# --- Scripts e Insumos Privados de Desarrollo ---
+generate_benchmark.py
+
+# --- Archivos Temporales y Caché de Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# --- Entornos Virtuales ---
+venv/
+env/
+ENV/
+.venv/
+
+# --- Base de Datos Vectorial Local (RAG) ---
+.chromadb/
+chroma_db/
+
+# --- Archivos del Sistema Operativo e IDEs ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
