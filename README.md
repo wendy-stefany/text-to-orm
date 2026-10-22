@@ -89,27 +89,28 @@ pip install -r requirements.txt
 
 ### 2. Configuración de Variables de Entorno
 
-# Crea un archivo .env en la raíz del proyecto basándote en la plantilla de ejemplo y configura tus credenciales de API
+Crea un archivo .env en la raíz del proyecto basándote en la plantilla de ejemplo y configura tus credenciales de API
 ```bash
 cp .env.example .env
 ```
 
-# Asegúrate de definir las claves requeridas dentro de .env
-
+Asegúrate de definir las claves requeridas dentro de .env
+```bash
 GEMINI_API_KEY=tu_api_key_aqui
+```
 
 ### 3. Ejecución del Benchmark Comparativo
 
-# 1. (Opcional) Extraer el esquema contextual de los modelos PHP mediante AST
+1. (Opcional) Extraer el esquema contextual de los modelos PHP mediante AST
 ```bash
 python build_models_schema.py
 ```
-# 2. Ejecutar la evaluación del benchmark experimental (C1 vs C2)
+2. Ejecutar la evaluación del benchmark experimental (C1 vs C2)
 ```bash
 python evaluate_benchmark.py
 ```
 
-# 3. Procesar resultados, generar gráficos (PNG) y reportes sintéticos (MD)
+3. Procesar resultados, generar gráficos (PNG) y reportes sintéticos (MD)
 ```bash
 python analyze_qualitative.py
 ```
