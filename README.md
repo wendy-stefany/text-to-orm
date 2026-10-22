@@ -25,16 +25,31 @@ El pipeline C2 se compone de los siguientes módulos:
 ## 📂 Estructura del Repositorio
 
 ```text
-├── src/
-│   ├── ast_parser/         # Analizador sintáctico para extraer metadata de modelos PHP
-│   ├── rag/                # Módulo de recuperación vectorial y embeddings (ChromaDB)
-│   ├── agents/             # Prompts y orquestación de agentes (Especialista + Sanitizador)
-│   └── evaluator/          # Motor de evaluación y comparación sintáctica (Match Rate)
-├── benchmark/              # Dataset consolidado de pruebas (N=100)
-├── config/                 # Configuraciones de entorno y modelos
-├── .gitignore              # Exclusión de scripts de generación y credenciales
-├── requirements.txt        # Dependencias del proyecto
-└── README.md               # Documentación principal
+text-to-orm-git/
+├── config/                               # Configuración global del sistema y parámetros
+│   └── settings.py                       # Parámetros de LLM, rutas y variables generales
+├── data/                                 # Datasets de prueba y esquemas procesados
+│   ├── models_schema-inventario-ti-laravel/
+│   │   └── eloquent_schema.txt
+│   ├── models_schema-monica/
+│   │   └── eloquent_schema.txt
+│   ├── benchmark-inventario-ti-laravel.json
+│   └── benchmark-monica.json
+├── results/                              # Resultados de la evaluación experimental
+│   ├── inventario-ti-laravel/
+│   └── monica/
+├── src/                                  # Arquitectura multiagente y cliente LLM
+│   ├── agents/
+│   │   ├── eloquent_agent.py
+│   │   ├── model_selection_agent.py
+│   │   └── sql_agent.py
+│   └── gemini_client.py
+├── .env.example                          # Plantilla para variables de entorno
+├── analyze_qualitative.py                # Generador de reportes cualitativos y gráficos
+├── build_models_schema.py                # Analizador AST para extracción de modelos PHP
+├── evaluate_benchmark.py                 # Script principal de ejecución del benchmark
+├── README.md                             # Documentación del proyecto
+└── requirements.txt                      # Dependencias del proyecto
 
 ---
 
