@@ -1,0 +1,1037 @@
+[
+  {
+    "complexity": "simple",
+    "question": "Obtén todos los usuarios que están actualmente activos en el sistema.",
+    "gold_standards": {
+      "expected_model": "User",
+      "expected_relations": [],
+      "expected_orms": [
+        "User::where('activo', true)->get()",
+        "User::whereActivo(true)->get()",
+        "User::query()->where('activo', true)->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM users WHERE activo = TRUE;",
+        "SELECT name, email, activo FROM users WHERE activo = TRUE;",
+        "SELECT u.* FROM users u WHERE u.activo = TRUE;"
+      ]
+    },
+    "id": "TEST-001"
+  },
+  {
+    "complexity": "simple",
+    "question": "Lista todos los activos que son de la marca \"HP\".",
+    "gold_standards": {
+      "expected_model": "Activo",
+      "expected_relations": [],
+      "expected_orms": [
+        "Activo::where('marca', 'HP')->get()",
+        "Activo::whereMarca('HP')->get()",
+        "Activo::query()->where('marca', 'HP')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM activos WHERE marca = 'HP';",
+        "SELECT codigo_inventario, nombre, marca FROM activos WHERE marca = 'HP';",
+        "SELECT a.* FROM activos a WHERE a.marca = 'HP';"
+      ]
+    },
+    "id": "TEST-002"
+  },
+  {
+    "complexity": "simple",
+    "question": "Encuentra todas las categorías de activos que están marcadas como activas.",
+    "gold_standards": {
+      "expected_model": "Categoria",
+      "expected_relations": [],
+      "expected_orms": [
+        "Categoria::where('activa', true)->get()",
+        "Categoria::whereActiva(true)->get()",
+        "Categoria::query()->where('activa', true)->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM categorias WHERE activa = TRUE;",
+        "SELECT nombre, descripcion FROM categorias WHERE activa = TRUE;",
+        "SELECT c.* FROM categorias c WHERE c.activa = TRUE;"
+      ]
+    },
+    "id": "TEST-003"
+  },
+  {
+    "complexity": "simple",
+    "question": "Muestra todos los estados de activo que están habilitados para uso.",
+    "gold_standards": {
+      "expected_model": "EstadoActivo",
+      "expected_relations": [],
+      "expected_orms": [
+        "EstadoActivo::where('activo', true)->get()",
+        "EstadoActivo::whereActivo(true)->get()",
+        "EstadoActivo::query()->where('activo', true)->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM estados_activo WHERE activo = TRUE;",
+        "SELECT nombre, descripcion FROM estados_activo WHERE activo = TRUE;",
+        "SELECT ea.* FROM estados_activo ea WHERE ea.activo = TRUE;"
+      ]
+    },
+    "id": "TEST-004"
+  },
+  {
+    "complexity": "simple",
+    "question": "Recupera todas las ubicaciones que se encuentran activas para asignaciones.",
+    "gold_standards": {
+      "expected_model": "Ubicacion",
+      "expected_relations": [],
+      "expected_orms": [
+        "Ubicacion::where('activa', true)->get()",
+        "Ubicacion::whereActiva(true)->get()",
+        "Ubicacion::query()->where('activa', true)->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM ubicaciones WHERE activa = TRUE;",
+        "SELECT nombre, codigo FROM ubicaciones WHERE activa = TRUE;",
+        "SELECT u.* FROM ubicaciones u WHERE u.activa = TRUE;"
+      ]
+    },
+    "id": "TEST-005"
+  },
+  {
+    "complexity": "simple",
+    "question": "Lista todos los roles de usuario que están actualmente activos en el sistema.",
+    "gold_standards": {
+      "expected_model": "Role",
+      "expected_relations": [],
+      "expected_orms": [
+        "Role::where('activo', true)->get()",
+        "Role::whereActivo(true)->get()",
+        "Role::query()->where('activo', true)->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM roles WHERE activo = TRUE;",
+        "SELECT nombre, descripcion FROM roles WHERE activo = TRUE;",
+        "SELECT r.* FROM roles r WHERE r.activo = TRUE;"
+      ]
+    },
+    "id": "TEST-006"
+  },
+  {
+    "complexity": "simple",
+    "question": "Obtén todos los permisos que están activos y pueden ser asignados a roles.",
+    "gold_standards": {
+      "expected_model": "Permission",
+      "expected_relations": [],
+      "expected_orms": [
+        "Permission::where('activo', true)->get()",
+        "Permission::whereActivo(true)->get()",
+        "Permission::query()->where('activo', true)->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM permissions WHERE activo = TRUE;",
+        "SELECT nombre, descripcion FROM permissions WHERE activo = TRUE;",
+        "SELECT p.* FROM permissions p WHERE p.activo = TRUE;"
+      ]
+    },
+    "id": "TEST-007"
+  },
+  {
+    "complexity": "simple",
+    "question": "Encuentra todas las licencias que son de tipo \"Software\".",
+    "gold_standards": {
+      "expected_model": "Licencia",
+      "expected_relations": [],
+      "expected_orms": [
+        "Licencia::where('tipo', 'Software')->get()",
+        "Licencia::whereTipo('Software')->get()",
+        "Licencia::query()->where('tipo', 'Software')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM licencias WHERE tipo = 'Software';",
+        "SELECT clave, tipo, proveedor FROM licencias WHERE tipo = 'Software';",
+        "SELECT l.* FROM licencias l WHERE l.tipo = 'Software';"
+      ]
+    },
+    "id": "TEST-008"
+  },
+  {
+    "complexity": "simple",
+    "question": "Muestra todos los estados de licencia que están definidos como activos.",
+    "gold_standards": {
+      "expected_model": "EstadoLicencia",
+      "expected_relations": [],
+      "expected_orms": [
+        "EstadoLicencia::where('activo', true)->get()",
+        "EstadoLicencia::whereActivo(true)->get()",
+        "EstadoLicencia::query()->where('activo', true)->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM estados_licencia WHERE activo = TRUE;",
+        "SELECT nombre, descripcion FROM estados_licencia WHERE activo = TRUE;",
+        "SELECT el.* FROM estados_licencia el WHERE el.activo = TRUE;"
+      ]
+    },
+    "id": "TEST-009"
+  },
+  {
+    "complexity": "simple",
+    "question": "Lista todos los mantenimientos realizados por el proveedor \"TecnoServicio S.A.\".",
+    "gold_standards": {
+      "expected_model": "Mantenimiento",
+      "expected_relations": [],
+      "expected_orms": [
+        "Mantenimiento::where('proveedor', 'TecnoServicio S.A.')->get()",
+        "Mantenimiento::whereProveedor('TecnoServicio S.A.')->get()",
+        "Mantenimiento::query()->where('proveedor', 'TecnoServicio S.A.')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM mantenimientos WHERE proveedor = 'TecnoServicio S.A.';",
+        "SELECT fecha, tipo, proveedor, costo FROM mantenimientos WHERE proveedor = 'TecnoServicio S.A.';",
+        "SELECT m.* FROM mantenimientos m WHERE m.proveedor = 'TecnoServicio S.A.';"
+      ]
+    },
+    "id": "TEST-010"
+  },
+  {
+    "complexity": "simple",
+    "question": "Recupera todas las bajas de activos cuyo motivo sea \"Fuera de Servicio\".",
+    "gold_standards": {
+      "expected_model": "Baja",
+      "expected_relations": [],
+      "expected_orms": [
+        "Baja::where('motivo', 'Fuera de Servicio')->get()",
+        "Baja::whereMotivo('Fuera de Servicio')->get()",
+        "Baja::query()->where('motivo', 'Fuera de Servicio')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM bajas WHERE motivo = 'Fuera de Servicio';",
+        "SELECT fecha, motivo, detalle FROM bajas WHERE motivo = 'Fuera de Servicio';",
+        "SELECT b.* FROM bajas b WHERE b.motivo = 'Fuera de Servicio';"
+      ]
+    },
+    "id": "TEST-011"
+  },
+  {
+    "complexity": "simple",
+    "question": "Obtén las asignaciones de activos que fueron realizadas antes del 1 de enero de 2023.",
+    "gold_standards": {
+      "expected_model": "Asignacion",
+      "expected_relations": [],
+      "expected_orms": [
+        "Asignacion::where('fecha_asignacion', '<', '2023-01-01')->get()",
+        "Asignacion::query()->whereDate('fecha_asignacion', '<', '2023-01-01')->get()",
+        "Asignacion::where('fecha_asignacion', '<', '2023-01-01 00:00:00')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM asignaciones WHERE fecha_asignacion < '2023-01-01';",
+        "SELECT activo_id, fecha_asignacion, observaciones FROM asignaciones WHERE fecha_asignacion < '2023-01-01';",
+        "SELECT a.* FROM asignaciones a WHERE a.fecha_asignacion < '2023-01-01';"
+      ]
+    },
+    "id": "TEST-012"
+  },
+  {
+    "complexity": "simple",
+    "question": "Lista todos los eventos de auditoría donde la acción registrada fue \"Actualización\".",
+    "gold_standards": {
+      "expected_model": "AuditoriaEvento",
+      "expected_relations": [],
+      "expected_orms": [
+        "AuditoriaEvento::where('accion', 'Actualizacion')->get()",
+        "AuditoriaEvento::whereAccion('Actualizacion')->get()",
+        "AuditoriaEvento::query()->where('accion', 'Actualizacion')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM auditoria_eventos WHERE accion = 'Actualizacion';",
+        "SELECT usuario_id, accion, tabla, created_at FROM auditoria_eventos WHERE accion = 'Actualizacion';",
+        "SELECT ae.* FROM auditoria_eventos ae WHERE ae.accion = 'Actualizacion';"
+      ]
+    },
+    "id": "TEST-013"
+  },
+  {
+    "complexity": "simple",
+    "question": "Encuentra todos los usuarios cuyo correo electrónico pertenece al dominio \"organizacion.com\".",
+    "gold_standards": {
+      "expected_model": "User",
+      "expected_relations": [],
+      "expected_orms": [
+        "User::where('email', 'LIKE', '%@organizacion.com')->get()",
+        "User::query()->where('email', 'LIKE', '%@organizacion.com')->get()",
+        "User::whereRaw('email LIKE ?', ['%@organizacion.com'])->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM users WHERE email LIKE '%@organizacion.com%';",
+        "SELECT name, email FROM users WHERE email LIKE '%@organizacion.com%';",
+        "SELECT u.* FROM users u WHERE u.email LIKE '%@organizacion.com%';"
+      ]
+    },
+    "id": "TEST-014"
+  },
+  {
+    "complexity": "simple",
+    "question": "Obtén todos los activos que tienen el modelo \"ProBook 450 G8\".",
+    "gold_standards": {
+      "expected_model": "Activo",
+      "expected_relations": [],
+      "expected_orms": [
+        "Activo::where('modelo', 'ProBook 450 G8')->get()",
+        "Activo::whereModelo('ProBook 450 G8')->get()",
+        "Activo::query()->where('modelo', 'ProBook 450 G8')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM activos WHERE modelo = 'ProBook 450 G8';",
+        "SELECT codigo_inventario, nombre, modelo, marca FROM activos WHERE modelo = 'ProBook 450 G8';",
+        "SELECT a.* FROM activos a WHERE a.modelo = 'ProBook 450 G8';"
+      ]
+    },
+    "id": "TEST-015"
+  },
+  {
+    "complexity": "simple",
+    "question": "Lista los activos que se encuentran en el estado \"En Reparación\".",
+    "gold_standards": {
+      "expected_model": "Activo",
+      "expected_relations": [
+        "estado"
+      ],
+      "expected_orms": [
+        "Activo::whereHas('estado', function ($query) { $query->where('nombre', 'En Reparación'); })->get()",
+        "Activo::with('estado')->whereHas('estado', fn ($query) => $query->where('nombre', 'En Reparación'))->get()",
+        "Activo::join('estados_activo', 'activos.estado_id', '=', 'estados_activo.id')->where('estados_activo.nombre', 'En Reparación')->select('activos.*')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT a.* FROM activos a JOIN estados_activo ea ON a.estado_id = ea.id WHERE ea.nombre = 'En Reparación';",
+        "SELECT activos.* FROM activos INNER JOIN estados_activo ON activos.estado_id = estados_activo.id WHERE estados_activo.nombre = 'En Reparación';",
+        "SELECT codigo_inventario, activos.nombre, marca FROM activos JOIN estados_activo ON activos.estado_id = estados_activo.id WHERE estados_activo.nombre = 'En Reparación';"
+      ]
+    },
+    "id": "TEST-016"
+  },
+  {
+    "complexity": "simple",
+    "question": "Recupera las licencias que tienen el estado de licencia \"Caducada\".",
+    "gold_standards": {
+      "expected_model": "Licencia",
+      "expected_relations": [
+        "estado"
+      ],
+      "expected_orms": [
+        "Licencia::whereHas('estado', function ($query) { $query->where('nombre', 'Caducada'); })->get()",
+        "Licencia::with('estado')->whereHas('estado', fn ($query) => $query->where('nombre', 'Caducada'))->get()",
+        "Licencia::join('estados_licencia', 'licencias.estado_lic_id', '=', 'estados_licencia.id')->where('estados_licencia.nombre', 'Caducada')->select('licencias.*')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT l.* FROM licencias l JOIN estados_licencia el ON l.estado_lic_id = el.id WHERE el.nombre = 'Caducada';",
+        "SELECT licencias.* FROM licencias INNER JOIN estados_licencia ON licencias.estado_lic_id = estados_licencia.id WHERE estados_licencia.nombre = 'Caducada';",
+        "SELECT clave, licencias.tipo, proveedor FROM licencias JOIN estados_licencia ON licencias.estado_lic_id = estados_licencia.id WHERE estados_licencia.nombre = 'Caducada';"
+      ]
+    },
+    "id": "TEST-017"
+  },
+  {
+    "complexity": "medium",
+    "question": "Listar los nombres y correos de los usuarios que están activos y tienen asignado el rol \"Administrador\", ordenados por nombre.",
+    "gold_standards": {
+      "expected_model": "User",
+      "expected_relations": [
+        "roles"
+      ],
+      "expected_orms": [
+        "User::where('activo', true)->whereHas('roles', function ($query) { $query->where('nombre', 'Administrador'); })->orderBy('name')->get(['name', 'email'])",
+        "User::with('roles')->where('activo', true)->whereRelation('roles', 'nombre', 'Administrador')->orderBy('name')->select('name', 'email')->get()",
+        "User::query()->where('activo', true)->whereHas('roles', fn($q) => $q->where('nombre', 'Administrador'))->orderBy('name')->pluck('email', 'name')"
+      ],
+      "expected_sqls": [
+        "SELECT u.name, u.email FROM users u JOIN role_user ru ON u.id = ru.user_id JOIN roles r ON ru.role_id = r.id WHERE u.activo = TRUE AND r.nombre = 'Administrador' ORDER BY u.name ASC;",
+        "SELECT users.name, users.email FROM users INNER JOIN role_user ON users.id = role_user.user_id INNER JOIN roles ON role_user.role_id = roles.id WHERE users.activo = 1 AND roles.nombre = 'Administrador' ORDER BY users.name ASC;",
+        "SELECT T1.name, T1.email FROM users AS T1 INNER JOIN role_user AS T2 ON T1.id = T2.user_id INNER JOIN roles AS T3 ON T2.role_id = T3.id WHERE T1.activo = TRUE AND T3.nombre = 'Administrador' ORDER BY T1.name ASC;"
+      ]
+    },
+    "id": "TEST-018"
+  },
+  {
+    "complexity": "medium",
+    "question": "Obtener todos los activos de la categoría \"Equipos de Computo\" que se encuentran en estado \"Disponible\" y fueron comprados en el último año, mostrando su código, nombre y costo.",
+    "gold_standards": {
+      "expected_model": "Activo",
+      "expected_relations": [
+        "categoria",
+        "estado"
+      ],
+      "expected_orms": [
+        "Activo::whereHas('categoria', fn($q) => $q->where('nombre', 'Equipos de Computo'))->whereHas('estado', fn($q) => $q->where('nombre', 'Disponible'))->where('fecha_compra', '>=', now()->subYear())->select('codigo_inventario', 'nombre', 'costo')->get()",
+        "Activo::with(['categoria', 'estado'])->whereRelation('categoria', 'nombre', 'Equipos de Computo')->whereRelation('estado', 'nombre', 'Disponible')->whereDate('fecha_compra', '>=', now()->subYear())->get(['codigo_inventario', 'nombre', 'costo'])",
+        "Activo::query()->whereHas('categoria', function ($q) { $q->where('nombre', 'Equipos de Computo'); })->whereHas('estado', function ($q) { $q->where('nombre', 'Disponible'); })->where('fecha_compra', '>=', date('Y-m-d', strtotime('-1 year')))->get(['codigo_inventario', 'nombre', 'costo'])"
+      ],
+      "expected_sqls": [
+        "SELECT a.codigo_inventario, a.nombre, a.costo FROM activos a JOIN categorias c ON a.categoria_id = c.id JOIN estados_activo ea ON a.estado_id = ea.id WHERE c.nombre = 'Equipos de Computo' AND ea.nombre = 'Disponible' AND a.fecha_compra >= DATE('now', '-1 year');",
+        "SELECT activos.codigo_inventario, activos.nombre, activos.costo FROM activos INNER JOIN categorias ON activos.categoria_id = categorias.id INNER JOIN estados_activo ON activos.estado_id = estados_activo.id WHERE categorias.nombre = 'Equipos de Computo' AND estados_activo.nombre = 'Disponible' AND activos.fecha_compra >= (CURRENT_DATE - INTERVAL '1 year');",
+        "SELECT T1.codigo_inventario, T1.nombre, T1.costo FROM activos AS T1 INNER JOIN categorias AS T2 ON T1.categoria_id = T2.id INNER JOIN estados_activo AS T3 ON T1.estado_id = T3.id WHERE T2.nombre = 'Equipos de Computo' AND T3.nombre = 'Disponible' AND T1.fecha_compra >= DATE('now', '-1 year');"
+      ]
+    },
+    "id": "TEST-019"
+  },
+  {
+    "complexity": "medium",
+    "question": "Mostrar los mantenimientos realizados por el proveedor \"ServiPlus\" de tipo \"Preventivo\" para activos de la marca \"Dell\", incluyendo el nombre del activo, ordenados por fecha de mantenimiento descendente.",
+    "gold_standards": {
+      "expected_model": "Mantenimiento",
+      "expected_relations": [
+        "activo"
+      ],
+      "expected_orms": [
+        "Mantenimiento::with(['activo' => fn($q) => $q->select('id', 'nombre')])->where('proveedor', 'ServiPlus')->where('tipo', 'Preventivo')->whereHas('activo', fn($q) => $q->where('marca', 'Dell'))->orderByDesc('fecha')->get()",
+        "Mantenimiento::where('proveedor', 'ServiPlus')->where('tipo', 'Preventivo')->whereRelation('activo', 'marca', 'Dell')->orderBy('fecha', 'desc')->get()",
+        "Mantenimiento::query()->join('activos', 'mantenimientos.activo_id', '=', 'activos.id')->select('mantenimientos.*', 'activos.nombre AS activo_nombre')->where('mantenimientos.proveedor', 'ServiPlus')->where('mantenimientos.tipo', 'Preventivo')->where('activos.marca', 'Dell')->orderBy('mantenimientos.fecha', 'desc')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT m.*, a.nombre AS activo_nombre FROM mantenimientos m JOIN activos a ON m.activo_id = a.id WHERE m.proveedor = 'ServiPlus' AND m.tipo = 'Preventivo' AND a.marca = 'Dell' ORDER BY m.fecha DESC;",
+        "SELECT mantenimientos.*, activos.nombre AS activo_nombre FROM mantenimientos INNER JOIN activos ON mantenimientos.activo_id = activos.id WHERE mantenimientos.proveedor = 'ServiPlus' AND mantenimientos.tipo = 'Preventivo' AND activos.marca = 'Dell' ORDER BY mantenimientos.fecha DESC;",
+        "SELECT T1.fecha, T1.tipo, T1.proveedor, T1.descripcion, T1.costo, T2.nombre AS activo_nombre FROM mantenimientos AS T1 INNER JOIN activos AS T2 ON T1.activo_id = T2.id WHERE T1.proveedor = 'ServiPlus' AND T1.tipo = 'Preventivo' AND T2.marca = 'Dell' ORDER BY T1.fecha DESC;"
+      ]
+    },
+    "id": "TEST-020"
+  },
+  {
+    "complexity": "medium",
+    "question": "Listar las licencias cuyo tipo sea \"Software\" y que venzan en los próximos 30 días o ya hayan expirado, mostrando el nombre del activo y el proveedor de la licencia.",
+    "gold_standards": {
+      "expected_model": "Licencia",
+      "expected_relations": [
+        "activo"
+      ],
+      "expected_orms": [
+        "Licencia::with(['activo' => fn($q) => $q->select('id', 'nombre')])->where('tipo', 'Software')->where('fecha_fin', '<=', now()->addDays(30))->get(['proveedor', 'fecha_fin'])",
+        "Licencia::where('tipo', 'Software')->whereDate('fecha_fin', '<=', now()->addDays(30))->get(['proveedor', 'fecha_fin'])->map(function ($licencia) { return ['activo_nombre' => $licencia->activo->nombre, 'proveedor' => $licencia->proveedor, 'fecha_fin' => $licencia->fecha_fin]; })",
+        "Licencia::query()->join('activos', 'licencias.activo_id', '=', 'activos.id')->select('activos.nombre AS activo_nombre', 'licencias.proveedor', 'licencias.fecha_fin')->where('licencias.tipo', 'Software')->where('licencias.fecha_fin', '<=', date('Y-m-d', strtotime('+30 days')))->get()"
+      ],
+      "expected_sqls": [
+        "SELECT a.nombre AS activo_nombre, l.proveedor, l.fecha_fin FROM licencias l JOIN activos a ON l.activo_id = a.id WHERE l.tipo = 'Software' AND l.fecha_fin <= DATE('now', '+30 days');",
+        "SELECT activos.nombre AS activo_nombre, licencias.proveedor, licencias.fecha_fin FROM licencias INNER JOIN activos ON licencias.activo_id = activos.id WHERE licencias.tipo = 'Software' AND licencias.fecha_fin <= (CURRENT_DATE + INTERVAL '30 days');",
+        "SELECT T2.nombre AS activo_nombre, T1.proveedor, T1.fecha_fin FROM licencias AS T1 INNER JOIN activos AS T2 ON T1.activo_id = T2.id WHERE T1.tipo = 'Software' AND T1.fecha_fin <= DATE('now', '+30 days');"
+      ]
+    },
+    "id": "TEST-021"
+  },
+  {
+    "complexity": "medium",
+    "question": "Encontrar las asignaciones actuales de activos en la ubicación \"Oficina Central\" que fueron asignadas a un usuario con el nombre \"Juan Pérez\", mostrando la fecha de asignación y el nombre del activo.",
+    "gold_standards": {
+      "expected_model": "Asignacion",
+      "expected_relations": [
+        "ubicacion",
+        "responsable",
+        "activo"
+      ],
+      "expected_orms": [
+        "Asignacion::whereNull('fecha_retorno')->whereHas('ubicacion', fn($q) => $q->where('nombre', 'Oficina Central'))->whereHas('responsable', fn($q) => $q->where('name', 'Juan Pérez'))->join('activos', 'asignaciones.activo_id', '=', 'activos.id')->select('asignaciones.fecha_asignacion', 'activos.nombre AS activo_nombre')->get()",
+        "Asignacion::with(['activo:id,nombre'])->whereNull('fecha_retorno')->whereRelation('ubicacion', 'nombre', 'Oficina Central')->whereRelation('responsable', 'name', 'Juan Pérez')->get(['fecha_asignacion'])->map(function ($asignacion) { return ['fecha_asignacion' => $asignacion->fecha_asignacion, 'activo_nombre' => $asignacion->activo->nombre]; })",
+        "Asignacion::query()->whereNull('fecha_retorno')->whereHas('ubicacion', function ($q) { $q->where('nombre', 'Oficina Central'); })->whereHas('responsable', function ($q) { $q->where('name', 'Juan Pérez'); })->select('fecha_asignacion')->addSelect(['activo_nombre' => \\App\\Models\\Activo::select('nombre')->whereColumn('id', 'asignaciones.activo_id')->limit(1)])->get()"
+      ],
+      "expected_sqls": [
+        "SELECT a.fecha_asignacion, act.nombre AS activo_nombre FROM asignaciones a JOIN ubicaciones u ON a.ubicacion_id = u.id JOIN users resp ON a.responsable_id = resp.id JOIN activos act ON a.activo_id = act.id WHERE a.fecha_retorno IS NULL AND u.nombre = 'Oficina Central' AND resp.name = 'Juan Pérez';",
+        "SELECT asignaciones.fecha_asignacion, activos.nombre AS activo_nombre FROM asignaciones INNER JOIN ubicaciones ON asignaciones.ubicacion_id = ubicaciones.id INNER JOIN users AS responsable ON asignaciones.responsable_id = responsable.id INNER JOIN activos ON asignaciones.activo_id = activos.id WHERE asignaciones.fecha_retorno IS NULL AND ubicaciones.nombre = 'Oficina Central' AND responsable.name = 'Juan Pérez';",
+        "SELECT T1.fecha_asignacion, T4.nombre AS activo_nombre FROM asignaciones AS T1 INNER JOIN ubicaciones AS T2 ON T1.ubicacion_id = T2.id INNER JOIN users AS T3 ON T1.responsable_id = T3.id INNER JOIN activos AS T4 ON T1.activo_id = T4.id WHERE T1.fecha_retorno IS NULL AND T2.nombre = 'Oficina Central' AND T3.name = 'Juan Pérez';"
+      ]
+    },
+    "id": "TEST-022"
+  },
+  {
+    "complexity": "medium",
+    "question": "Recuperar los eventos de auditoría donde la acción fue \"Creacion\" y que fueron realizados por el usuario con email \"admin@empresa.com\", mostrando la tabla afectada y la fecha del evento.",
+    "gold_standards": {
+      "expected_model": "AuditoriaEvento",
+      "expected_relations": [
+        "usuario"
+      ],
+      "expected_orms": [
+        "AuditoriaEvento::where('accion', 'Creacion')->whereHas('usuario', fn($q) => $q->where('email', 'admin@empresa.com'))->select('tabla', 'created_at')->get()",
+        "AuditoriaEvento::with(['usuario:id,email'])->where('accion', 'Creacion')->whereRelation('usuario', 'email', 'admin@empresa.com')->get(['tabla', 'created_at'])",
+        "AuditoriaEvento::query()->join('users', 'auditoria_eventos.usuario_id', '=', 'users.id')->where('auditoria_eventos.accion', 'Creacion')->where('users.email', 'admin@empresa.com')->select('auditoria_eventos.tabla', 'auditoria_eventos.created_at')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT ae.tabla, ae.created_at FROM auditoria_eventos ae JOIN users u ON ae.usuario_id = u.id WHERE ae.accion = 'Creacion' AND u.email = 'admin@empresa.com';",
+        "SELECT auditoria_eventos.tabla, auditoria_eventos.created_at FROM auditoria_eventos INNER JOIN users ON auditoria_eventos.usuario_id = users.id WHERE auditoria_eventos.accion = 'Creacion' AND users.email = 'admin@empresa.com';",
+        "SELECT T1.tabla, T1.created_at FROM auditoria_eventos AS T1 INNER JOIN users AS T2 ON T1.usuario_id = T2.id WHERE T1.accion = 'Creacion' AND T2.email = 'admin@empresa.com';"
+      ]
+    },
+    "id": "TEST-023"
+  },
+  {
+    "complexity": "medium",
+    "question": "Obtener las bajas de activos que pertenecen a la categoría \"Mobiliario\" y fueron autorizadas por un usuario cuyo nombre contenga \"Gerente\", mostrando la fecha de la baja y el motivo.",
+    "gold_standards": {
+      "expected_model": "Baja",
+      "expected_relations": [
+        "activo.categoria",
+        "autorizadoPor"
+      ],
+      "expected_orms": [
+        "Baja::whereHas('activo.categoria', fn($q) => $q->where('nombre', 'Mobiliario'))->whereHas('autorizadoPor', fn($q) => $q->where('name', 'LIKE', '%Gerente%'))->select('fecha', 'motivo')->get()",
+        "Baja::with(['activo.categoria', 'autorizadoPor'])->whereRelation('activo.categoria', 'nombre', 'Mobiliario')->whereRelation('autorizadoPor', 'name', 'LIKE', '%Gerente%')->get(['fecha', 'motivo'])",
+        "Baja::query()->join('activos', 'bajas.activo_id', '=', 'activos.id')->join('categorias', 'activos.categoria_id', '=', 'categorias.id')->join('users', 'bajas.autorizado_por_id', '=', 'users.id')->where('categorias.nombre', 'Mobiliario')->where('users.name', 'LIKE', '%Gerente%')->select('bajas.fecha', 'bajas.motivo')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT b.fecha, b.motivo FROM bajas b JOIN activos a ON b.activo_id = a.id JOIN categorias c ON a.categoria_id = c.id JOIN users u ON b.autorizado_por_id = u.id WHERE c.nombre = 'Mobiliario' AND u.name LIKE '%Gerente%';",
+        "SELECT bajas.fecha, bajas.motivo FROM bajas INNER JOIN activos ON bajas.activo_id = activos.id INNER JOIN categorias ON activos.categoria_id = categorias.id INNER JOIN users ON bajas.autorizado_por_id = users.id WHERE categorias.nombre = 'Mobiliario' AND users.name LIKE '%Gerente%';",
+        "SELECT T1.fecha, T1.motivo FROM bajas AS T1 INNER JOIN activos AS T2 ON T1.activo_id = T2.id INNER JOIN categorias AS T3 ON T2.categoria_id = T3.id INNER JOIN users AS T4 ON T1.autorizado_por_id = T4.id WHERE T3.nombre = 'Mobiliario' AND T4.name LIKE '%Gerente%';"
+      ]
+    },
+    "id": "TEST-024"
+  },
+  {
+    "complexity": "medium",
+    "question": "Listar los activos que no tienen ninguna asignación registrada hasta la fecha, y que están en estado \"En Almacén\".",
+    "gold_standards": {
+      "expected_model": "Activo",
+      "expected_relations": [
+        "asignaciones",
+        "estado"
+      ],
+      "expected_orms": [
+        "Activo::whereHas('estado', fn($q) => $q->where('nombre', 'En Almacén'))->doesntHave('asignaciones')->select('codigo_inventario', 'nombre')->get()",
+        "Activo::with('estado')->whereRelation('estado', 'nombre', 'En Almacén')->doesntHave('asignaciones')->get(['codigo_inventario', 'nombre'])",
+        "Activo::query()->whereHas('estado', function ($q) { $q->where('nombre', 'En Almacén'); })->leftJoin('asignaciones', 'activos.id', '=', 'asignaciones.activo_id')->whereNull('asignaciones.activo_id')->distinct()->select('activos.codigo_inventario', 'activos.nombre')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT a.codigo_inventario, a.nombre FROM activos a JOIN estados_activo ea ON a.estado_id = ea.id WHERE ea.nombre = 'En Almacén' AND NOT EXISTS (SELECT 1 FROM asignaciones WHERE asignaciones.activo_id = a.id);",
+        "SELECT activos.codigo_inventario, activos.nombre FROM activos INNER JOIN estados_activo ON activos.estado_id = estados_activo.id LEFT JOIN asignaciones ON activos.id = asignaciones.activo_id WHERE estados_activo.nombre = 'En Almacén' AND asignaciones.activo_id IS NULL GROUP BY activos.id, activos.codigo_inventario, activos.nombre;",
+        "SELECT T1.codigo_inventario, T1.nombre FROM activos AS T1 INNER JOIN estados_activo AS T2 ON T1.estado_id = T2.id WHERE T2.nombre = 'En Almacén' AND T1.id NOT IN (SELECT activo_id FROM asignaciones WHERE activo_id IS NOT NULL);"
+      ]
+    },
+    "id": "TEST-025"
+  },
+  {
+    "complexity": "medium",
+    "question": "Mostrar las categorías que tienen al menos un activo \"En Reparación\" y que están marcadas como \"activa\" en su propia definición.",
+    "gold_standards": {
+      "expected_model": "Categoria",
+      "expected_relations": [
+        "activos.estado"
+      ],
+      "expected_orms": [
+        "Categoria::where('activa', true)->whereHas('activos.estado', fn($q) => $q->where('nombre', 'En Reparación'))->select('nombre', 'descripcion')->get()",
+        "Categoria::withWhereHas('activos.estado', fn($q) => $q->where('nombre', 'En Reparación'))->where('activa', true)->get(['nombre', 'descripcion'])",
+        "Categoria::query()->join('activos', 'categorias.id', '=', 'activos.categoria_id')->join('estados_activo', 'activos.estado_id', '=', 'estados_activo.id')->where('categorias.activa', true)->where('estados_activo.nombre', 'En Reparación')->distinct()->select('categorias.nombre', 'categorias.descripcion')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT c.nombre, c.descripcion FROM categorias c JOIN activos a ON c.id = a.categoria_id JOIN estados_activo ea ON a.estado_id = ea.id WHERE c.activa = TRUE AND ea.nombre = 'En Reparación' GROUP BY c.id, c.nombre, c.descripcion;",
+        "SELECT DISTINCT categorias.nombre, categorias.descripcion FROM categorias INNER JOIN activos ON categorias.id = activos.categoria_id INNER JOIN estados_activo ON activos.estado_id = estados_activo.id WHERE categorias.activa = 1 AND estados_activo.nombre = 'En Reparación';",
+        "SELECT T1.nombre, T1.descripcion FROM categorias AS T1 INNER JOIN activos AS T2 ON T1.id = T2.categoria_id INNER JOIN estados_activo AS T3 ON T2.estado_id = T3.id WHERE T1.activa = TRUE AND T3.nombre = 'En Reparación' GROUP BY T1.id, T1.nombre, T1.descripcion;"
+      ]
+    },
+    "id": "TEST-026"
+  },
+  {
+    "complexity": "medium",
+    "question": "Enlistar los usuarios que tienen el rol \"Editor\" y que iniciaron sesión por última vez en el último mes, mostrando su nombre y el email.",
+    "gold_standards": {
+      "expected_model": "User",
+      "expected_relations": [
+        "roles"
+      ],
+      "expected_orms": [
+        "User::whereHas('roles', fn($q) => $q->where('nombre', 'Editor'))->where('last_login_at', '>=', now()->subMonth())->select('name', 'email')->get()",
+        "User::with('roles')->whereRelation('roles', 'nombre', 'Editor')->whereDate('last_login_at', '>=', now()->subMonth())->get(['name', 'email'])",
+        "User::query()->join('role_user', 'users.id', '=', 'role_user.user_id')->join('roles', 'role_user.role_id', '=', 'roles.id')->where('roles.nombre', 'Editor')->where('users.last_login_at', '>=', date('Y-m-d H:i:s', strtotime('-1 month')))->distinct()->select('users.name', 'users.email')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT u.name, u.email FROM users u JOIN role_user ru ON u.id = ru.user_id JOIN roles r ON ru.role_id = r.id WHERE r.nombre = 'Editor' AND u.last_login_at >= STRFTIME('%Y-%m-%d %H:%M:%S', DATE('now', '-1 month'));",
+        "SELECT DISTINCT users.name, users.email FROM users INNER JOIN role_user ON users.id = role_user.user_id INNER JOIN roles ON role_user.role_id = roles.id WHERE roles.nombre = 'Editor' AND users.last_login_at >= (CURRENT_TIMESTAMP - INTERVAL '1 month');",
+        "SELECT T1.name, T1.email FROM users AS T1 INNER JOIN role_user AS T2 ON T1.id = T2.user_id INNER JOIN roles AS T3 ON T2.role_id = T3.id WHERE T3.nombre = 'Editor' AND T1.last_login_at >= STRFTIME('%Y-%m-%d %H:%M:%S', DATE('now', '-1 month'));"
+      ]
+    },
+    "id": "TEST-027"
+  },
+  {
+    "complexity": "medium",
+    "question": "Obtener los nombres de los permisos que están asociados a roles que contienen la palabra \"Recursos\" en su descripción y que se encuentran activos.",
+    "gold_standards": {
+      "expected_model": "Permission",
+      "expected_relations": [
+        "roles"
+      ],
+      "expected_orms": [
+        "Permission::where('activo', true)->whereHas('roles', fn($q) => $q->where('descripcion', 'LIKE', '%Recursos%'))->pluck('nombre')",
+        "Permission::with('roles')->where('activo', true)->whereRelation('roles', 'descripcion', 'LIKE', '%Recursos%')->get(['nombre'])",
+        "Permission::query()->join('permission_role', 'permissions.id', '=', 'permission_role.permission_id')->join('roles', 'permission_role.role_id', '=', 'roles.id')->where('permissions.activo', true)->where('roles.descripcion', 'LIKE', '%Recursos%')->distinct()->pluck('permissions.nombre')"
+      ],
+      "expected_sqls": [
+        "SELECT DISTINCT p.nombre FROM permissions p JOIN permission_role pr ON p.id = pr.permission_id JOIN roles r ON pr.role_id = r.id WHERE p.activo = TRUE AND r.descripcion LIKE '%Recursos%';",
+        "SELECT DISTINCT permissions.nombre FROM permissions INNER JOIN permission_role ON permissions.id = permission_role.permission_id INNER JOIN roles ON permission_role.role_id = roles.id WHERE permissions.activo = 1 AND roles.descripcion LIKE '%Recursos%';",
+        "SELECT DISTINCT T1.nombre FROM permissions AS T1 INNER JOIN permission_role AS T2 ON T1.id = T2.permission_id INNER JOIN roles AS T3 ON T2.role_id = T3.id WHERE T1.activo = TRUE AND T3.descripcion LIKE '%Recursos%';"
+      ]
+    },
+    "id": "TEST-028"
+  },
+  {
+    "complexity": "medium",
+    "question": "Encontrar las ubicaciones que tuvieron alguna asignación de activo en los últimos 90 días, mostrando el código y nombre de la ubicación.",
+    "gold_standards": {
+      "expected_model": "Ubicacion",
+      "expected_relations": [
+        "asignaciones"
+      ],
+      "expected_orms": [
+        "Ubicacion::whereHas('asignaciones', fn($q) => $q->where('created_at', '>=', now()->subDays(90)))->select('codigo', 'nombre')->distinct()->get()",
+        "Ubicacion::withWhereHas('asignaciones', fn($q) => $q->where('created_at', '>=', now()->subDays(90)))->get(['codigo', 'nombre'])",
+        "Ubicacion::query()->join('asignaciones', 'ubicaciones.id', '=', 'asignaciones.ubicacion_id')->where('asignaciones.created_at', '>=', date('Y-m-d H:i:s', strtotime('-90 days')))->distinct()->select('ubicaciones.codigo', 'ubicaciones.nombre')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT DISTINCT u.codigo, u.nombre FROM ubicaciones u JOIN asignaciones a ON u.id = a.ubicacion_id WHERE a.created_at >= STRFTIME('%Y-%m-%d %H:%M:%S', DATE('now', '-90 days'));",
+        "SELECT DISTINCT ubicaciones.codigo, ubicaciones.nombre FROM ubicaciones INNER JOIN asignaciones ON ubicaciones.id = asignaciones.ubicacion_id WHERE asignaciones.created_at >= (CURRENT_TIMESTAMP - INTERVAL '90 day');",
+        "SELECT DISTINCT T1.codigo, T1.nombre FROM ubicaciones AS T1 INNER JOIN asignaciones AS T2 ON T1.id = T2.ubicacion_id WHERE T2.created_at >= STRFTIME('%Y-%m-%d %H:%M:%S', DATE('now', '-90 days'));"
+      ]
+    },
+    "id": "TEST-029"
+  },
+  {
+    "complexity": "medium",
+    "question": "Listar los activos que han tenido más de 2 mantenimientos registrados con un costo superior a 100 en el último año, mostrando el código y nombre del activo.",
+    "gold_standards": {
+      "expected_model": "Activo",
+      "expected_relations": [
+        "mantenimientos"
+      ],
+      "expected_orms": [
+        "Activo::whereHas('mantenimientos', fn($q) => $q->where('costo', '>', 100)->where('fecha', '>=', now()->subYear()), '>=', 3)->select('codigo_inventario', 'nombre')->get()",
+        "Activo::query()->withCount(['mantenimientos' => fn($q) => $q->where('costo', '>', 100)->where('fecha', '>=', now()->subYear())])->having('mantenimientos_count', '>=', 3)->select('codigo_inventario', 'nombre')->get()",
+        "Activo::select('activos.codigo_inventario', 'activos.nombre')->join('mantenimientos', 'activos.id', '=', 'mantenimientos.activo_id')->where('mantenimientos.costo', '>', 100)->where('mantenimientos.fecha', '>=', date('Y-m-d', strtotime('-1 year')))->groupBy('activos.id', 'activos.codigo_inventario', 'activos.nombre')->havingRaw('COUNT(mantenimientos.id) >= 3')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT a.codigo_inventario, a.nombre FROM activos a JOIN mantenimientos m ON a.id = m.activo_id WHERE m.costo > 100 AND m.fecha >= DATE('now', '-1 year') GROUP BY a.id, a.codigo_inventario, a.nombre HAVING COUNT(m.id) >= 3;",
+        "SELECT activos.codigo_inventario, activos.nombre FROM activos INNER JOIN mantenimientos ON activos.id = mantenimientos.activo_id WHERE mantenimientos.costo > 100 AND mantenimientos.fecha >= (CURRENT_DATE - INTERVAL '1 year') GROUP BY activos.id, activos.codigo_inventario, activos.nombre HAVING COUNT(mantenimientos.id) >= 3;",
+        "SELECT T1.codigo_inventario, T1.nombre FROM activos AS T1 INNER JOIN mantenimientos AS T2 ON T1.id = T2.activo_id WHERE T2.costo > 100 AND T2.fecha >= DATE('now', '-1 year') GROUP BY T1.id, T1.codigo_inventario, T1.nombre HAVING COUNT(T2.id) >= 3;"
+      ]
+    },
+    "id": "TEST-030"
+  },
+  {
+    "complexity": "medium",
+    "question": "Mostrar todas las licencias que tienen el estado \"Activa\" y son de tipo \"OEM\", incluyendo su clave y la fecha de fin, ordenadas por fecha de fin ascendente.",
+    "gold_standards": {
+      "expected_model": "Licencia",
+      "expected_relations": [
+        "estado"
+      ],
+      "expected_orms": [
+        "Licencia::where('tipo', 'OEM')->whereHas('estado', fn($q) => $q->where('nombre', 'Activa'))->orderBy('fecha_fin')->select('clave', 'fecha_fin')->get()",
+        "Licencia::with('estado')->where('tipo', 'OEM')->whereRelation('estado', 'nombre', 'Activa')->orderBy('fecha_fin', 'asc')->get(['clave', 'fecha_fin'])",
+        "Licencia::query()->join('estados_licencia', 'licencias.estado_lic_id', '=', 'estados_licencia.id')->where('licencias.tipo', 'OEM')->where('estados_licencia.nombre', 'Activa')->orderBy('licencias.fecha_fin', 'asc')->select('licencias.clave', 'licencias.fecha_fin')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT l.clave, l.fecha_fin FROM licencias l JOIN estados_licencia el ON l.estado_lic_id = el.id WHERE l.tipo = 'OEM' AND el.nombre = 'Activa' ORDER BY l.fecha_fin ASC;",
+        "SELECT licencias.clave, licencias.fecha_fin FROM licencias INNER JOIN estados_licencia ON licencias.estado_lic_id = estados_licencia.id WHERE licencias.tipo = 'OEM' AND estados_licencia.nombre = 'Activa' ORDER BY licencias.fecha_fin ASC;",
+        "SELECT T1.clave, T1.fecha_fin FROM licencias AS T1 INNER JOIN estados_licencia AS T2 ON T1.estado_lic_id = T2.id WHERE T1.tipo = 'OEM' AND T2.nombre = 'Activa' ORDER BY T1.fecha_fin ASC;"
+      ]
+    },
+    "id": "TEST-031"
+  },
+  {
+    "complexity": "medium",
+    "question": "Encontrar los nombres de los usuarios que han autorizado al menos una baja de activo y que actualmente se encuentran inactivos en el sistema.",
+    "gold_standards": {
+      "expected_model": "User",
+      "expected_relations": [
+        "bajasAutorizadas"
+      ],
+      "expected_orms": [
+        "User::where('activo', false)->has('bajasAutorizadas')->pluck('name')",
+        "User::with('bajasAutorizadas')->where('activo', false)->whereHas('bajasAutorizadas')->get(['name'])",
+        "User::query()->join('bajas', 'users.id', '=', 'bajas.autorizado_por_id')->where('users.activo', false)->distinct()->pluck('users.name')"
+      ],
+      "expected_sqls": [
+        "SELECT DISTINCT u.name FROM users u JOIN bajas b ON u.id = b.autorizado_por_id WHERE u.activo = FALSE;",
+        "SELECT DISTINCT users.name FROM users INNER JOIN bajas ON users.id = bajas.autorizado_por_id WHERE users.activo = 0;",
+        "SELECT DISTINCT T1.name FROM users AS T1 INNER JOIN bajas AS T2 ON T1.id = T2.autorizado_por_id WHERE T1.activo = FALSE;"
+      ]
+    },
+    "id": "TEST-032"
+  },
+  {
+    "complexity": "medium",
+    "question": "Listar los nombres de los estados de activo que tienen activos asociados y que ninguno de esos activos tiene un registro de baja.",
+    "gold_standards": {
+      "expected_model": "EstadoActivo",
+      "expected_relations": [
+        "activos.baja"
+      ],
+      "expected_orms": [
+        "EstadoActivo::has('activos')->whereDoesntHave('activos.baja')->pluck('nombre')",
+        "EstadoActivo::query()->whereHas('activos')->whereDoesntHave('activos.baja')->get(['nombre'])",
+        "EstadoActivo::whereHas('activos')->whereDoesntHave('activos', function($query) { $query->has('baja'); })->pluck('nombre')"
+      ],
+      "expected_sqls": [
+        "SELECT ea.nombre FROM estados_activo ea WHERE EXISTS (SELECT 1 FROM activos a WHERE a.estado_id = ea.id) AND NOT EXISTS (SELECT 1 FROM activos a2 JOIN bajas b ON a2.id = b.activo_id WHERE a2.estado_id = ea.id);",
+        "SELECT estados_activo.nombre FROM estados_activo WHERE (SELECT COUNT(*) FROM activos WHERE activos.estado_id = estados_activo.id) > 0 AND NOT EXISTS (SELECT 1 FROM activos INNER JOIN bajas ON activos.id = bajas.activo_id WHERE activos.estado_id = estados_activo.id);",
+        "SELECT T1.nombre FROM estados_activo AS T1 WHERE EXISTS (SELECT 1 FROM activos AS T2 WHERE T2.estado_id = T1.id) AND NOT EXISTS (SELECT 1 FROM activos AS T3 INNER JOIN bajas AS T4 ON T3.id = T4.activo_id WHERE T3.estado_id = T1.id);"
+      ]
+    },
+    "id": "TEST-033"
+  },
+  {
+    "complexity": "medium",
+    "question": "Obtener los mantenimientos que fueron realizados por un técnico interno cuyo nombre es \"Carlos Gómez\" y que tuvieron un costo superior a 50.",
+    "gold_standards": {
+      "expected_model": "Mantenimiento",
+      "expected_relations": [
+        "tecnico"
+      ],
+      "expected_orms": [
+        "Mantenimiento::whereHas('tecnico', fn($q) => $q->where('name', 'Carlos Gómez'))->where('costo', '>', 50)->select('descripcion', 'costo', 'fecha')->get()",
+        "Mantenimiento::with('tecnico')->whereRelation('tecnico', 'name', 'Carlos Gómez')->where('costo', '>', 50)->get(['descripcion', 'costo', 'fecha'])",
+        "Mantenimiento::query()->join('users', 'mantenimientos.tecnico_id', '=', 'users.id')->where('users.name', 'Carlos Gómez')->where('mantenimientos.costo', '>', 50)->select('mantenimientos.descripcion', 'mantenimientos.costo', 'mantenimientos.fecha')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT m.descripcion, m.costo, m.fecha FROM mantenimientos m JOIN users u ON m.tecnico_id = u.id WHERE u.name = 'Carlos Gómez' AND m.costo > 50;",
+        "SELECT mantenimientos.descripcion, mantenimientos.costo, mantenimientos.fecha FROM mantenimientos INNER JOIN users ON mantenimientos.tecnico_id = users.id WHERE users.name = 'Carlos Gómez' AND mantenimientos.costo > 50;",
+        "SELECT T1.descripcion, T1.costo, T1.fecha FROM mantenimientos AS T1 INNER JOIN users AS T2 ON T1.tecnico_id = T2.id WHERE T2.name = 'Carlos Gómez' AND T1.costo > 50;"
+      ]
+    },
+    "id": "TEST-034"
+  },
+  {
+    "complexity": "medium",
+    "question": "Listar todas las ubicaciones que tienen activos asignados que están en estado 'En Uso' y que están activas.",
+    "gold_standards": {
+      "expected_model": "Ubicacion",
+      "expected_relations": [
+        "asignaciones.activo.estado"
+      ],
+      "expected_orms": [
+        "Ubicacion::where('activa', true)->whereHas('asignaciones.activo.estado', fn($q) => $q->where('nombre', 'En Uso'))->distinct()->select('nombre', 'codigo')->get()",
+        "Ubicacion::withWhereHas('asignaciones.activo.estado', fn($q) => $q->where('nombre', 'En Uso'))->where('activa', true)->get(['nombre', 'codigo'])",
+        "Ubicacion::query()->join('asignaciones', 'ubicaciones.id', '=', 'asignaciones.ubicacion_id')->join('activos', 'asignaciones.activo_id', '=', 'activos.id')->join('estados_activo', 'activos.estado_id', '=', 'estados_activo.id')->where('ubicaciones.activa', true)->where('estados_activo.nombre', 'En Uso')->distinct()->select('ubicaciones.nombre', 'ubicaciones.codigo')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT DISTINCT u.nombre, u.codigo FROM ubicaciones u JOIN asignaciones a ON u.id = a.ubicacion_id JOIN activos act ON a.activo_id = act.id JOIN estados_activo ea ON act.estado_id = ea.id WHERE u.activa = TRUE AND ea.nombre = 'En Uso';",
+        "SELECT DISTINCT ubicaciones.nombre, ubicaciones.codigo FROM ubicaciones INNER JOIN asignaciones ON ubicaciones.id = asignaciones.ubicacion_id INNER JOIN activos ON asignaciones.activo_id = activos.id INNER JOIN estados_activo ON activos.estado_id = estados_activo.id WHERE ubicaciones.activa = 1 AND estados_activo.nombre = 'En Uso';",
+        "SELECT DISTINCT T1.nombre, T1.codigo FROM ubicaciones AS T1 INNER JOIN asignaciones AS T2 ON T1.id = T2.ubicacion_id INNER JOIN activos AS T3 ON T2.activo_id = T3.id INNER JOIN estados_activo AS T4 ON T3.estado_id = T4.id WHERE T1.activa = TRUE AND T4.nombre = 'En Uso';"
+      ]
+    },
+    "id": "TEST-035"
+  },
+  {
+    "complexity": "medium",
+    "question": "Obtener los roles que están activos y tienen permisos con la descripción que contiene la palabra \"gestión\", mostrando el nombre y descripción del rol.",
+    "gold_standards": {
+      "expected_model": "Role",
+      "expected_relations": [
+        "permissions"
+      ],
+      "expected_orms": [
+        "Role::where('activo', true)->whereHas('permissions', fn($q) => $q->where('descripcion', 'LIKE', '%gestión%'))->select('nombre', 'descripcion')->get()",
+        "Role::withWhereHas('permissions', fn($q) => $q->where('descripcion', 'LIKE', '%gestión%'))->where('activo', true)->get(['nombre', 'descripcion'])",
+        "Role::query()->join('permission_role', 'roles.id', '=', 'permission_role.role_id')->join('permissions', 'permission_role.permission_id', '=', 'permissions.id')->where('roles.activo', true)->where('permissions.descripcion', 'LIKE', '%gestión%')->distinct()->select('roles.nombre', 'roles.descripcion')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT DISTINCT r.nombre, r.descripcion FROM roles r JOIN permission_role pr ON r.id = pr.role_id JOIN permissions p ON pr.permission_id = p.id WHERE r.activo = TRUE AND p.descripcion LIKE '%gestión%';",
+        "SELECT DISTINCT roles.nombre, roles.descripcion FROM roles INNER JOIN permission_role ON roles.id = permission_role.role_id INNER JOIN permissions ON permission_role.permission_id = permissions.id WHERE roles.activo = 1 AND permissions.descripcion LIKE '%gestión%';",
+        "SELECT DISTINCT T1.nombre, T1.descripcion FROM roles AS T1 INNER JOIN permission_role AS T2 ON T1.id = T2.role_id INNER JOIN permissions AS T3 ON T2.permission_id = T3.id WHERE T1.activo = TRUE AND T3.descripcion LIKE '%gestión%';"
+      ]
+    },
+    "id": "TEST-036"
+  },
+  {
+    "complexity": "complex",
+    "question": "Recuperar los activos que tienen licencias del tipo 'Software' cuya fecha de fin es anterior al 31 de diciembre de 2024, que están asignados a un responsable activo y ubicados en una sede con nombre 'Oficina Central'.",
+    "gold_standards": {
+      "expected_model": "Activo",
+      "expected_relations": [
+        "licencias.estado",
+        "asignaciones.responsable",
+        "asignaciones.ubicacion"
+      ],
+      "expected_orms": [
+        "Activo::whereHas('licencias', function ($query) { $query->where('tipo', 'Software')->whereDate('fecha_fin', '<', '2024-12-31')->whereHas('estado', function($q) { $q->where('activo', true); }); })->whereHas('asignaciones', function ($query) { $query->whereHas('responsable', function ($q) { $q->where('activo', true); })->whereHas('ubicacion', function ($q) { $q->where('nombre', 'Oficina Central'); }); })->get()",
+        "Activo::query()->whereHas('licencias', fn($q) => $q->where('tipo', 'Software')->where('fecha_fin', '<', '2024-12-31')->whereHas('estado', fn($q2) => $q2->where('activo', true)))->whereHas('asignaciones', fn($q) => $q->whereHas('responsable', fn($q2) => $q2->where('activo', true))->whereHas('ubicacion', fn($q2) => $q2->where('nombre', 'Oficina Central')))->get()",
+        "Activo::with(['licencias.estado', 'asignaciones.responsable', 'asignaciones.ubicacion'])->whereHas('licencias', function ($query) { $query->whereTipo('Software')->where('fecha_fin', '<', '2024-12-31'); })->whereHas('licencias.estado', function($q) { $q->whereActivo(true); })->whereHas('asignaciones.responsable', function ($q) { $q->whereActivo(true); })->whereHas('asignaciones.ubicacion', function ($q) { $q->whereNombre('Oficina Central'); })->get()"
+      ],
+      "expected_sqls": [
+        "SELECT a.* FROM activos a INNER JOIN licencias l ON a.id = l.activo_id INNER JOIN estados_licencia el ON l.estado_lic_id = el.id INNER JOIN asignaciones asg ON a.id = asg.activo_id INNER JOIN users u ON asg.responsable_id = u.id INNER JOIN ubicaciones ub ON asg.ubicacion_id = ub.id WHERE l.tipo = 'Software' AND l.fecha_fin < '2024-12-31' AND el.activo = TRUE AND u.activo = TRUE AND ub.nombre = 'Oficina Central';",
+        "SELECT a.id, a.nombre, a.codigo_inventario FROM activos a WHERE EXISTS (SELECT 1 FROM licencias l JOIN estados_licencia el ON l.estado_lic_id = el.id WHERE l.activo_id = a.id AND l.tipo = 'Software' AND l.fecha_fin < '2024-12-31' AND el.activo = TRUE) AND EXISTS (SELECT 1 FROM asignaciones asg JOIN users u ON asg.responsable_id = u.id JOIN ubicaciones ub ON asg.ubicacion_id = ub.id WHERE asg.activo_id = a.id AND u.activo = TRUE AND ub.nombre = 'Oficina Central');",
+        "SELECT DISTINCT T1.id, T1.nombre, T1.codigo_inventario FROM activos AS T1 INNER JOIN licencias AS T2 ON T1.id = T2.activo_id INNER JOIN estados_licencia AS T3 ON T2.estado_lic_id = T3.id INNER JOIN asignaciones AS T4 ON T1.id = T4.activo_id INNER JOIN users AS T5 ON T4.responsable_id = T5.id INNER JOIN ubicaciones AS T6 ON T4.ubicacion_id = T6.id WHERE T2.tipo = 'Software' AND T2.fecha_fin < '2024-12-31' AND T3.activo = 1 AND T5.activo = 1 AND T6.nombre = 'Oficina Central';"
+      ]
+    },
+    "id": "TEST-037"
+  },
+  {
+    "complexity": "complex",
+    "question": "Listar los usuarios activos que han autorizado bajas de activos con un costo de compra superior a 1000 y que además tienen un rol con nombre 'Administrador de Activos'.",
+    "gold_standards": {
+      "expected_model": "User",
+      "expected_relations": [
+        "bajasAutorizadas.activo",
+        "roles"
+      ],
+      "expected_orms": [
+        "User::where('activo', true)->whereHas('bajasAutorizadas', function ($query) { $query->whereHas('activo', function ($q) { $q->where('costo', '>', 1000); }); })->whereHas('roles', function ($query) { $query->where('nombre', 'Administrador de Activos'); })->get()",
+        "User::query()->whereActivo(true)->whereHas('bajasAutorizadas.activo', fn($q) => $q->where('costo', '>', 1000))->whereHas('roles', fn($q) => $q->whereNombre('Administrador de Activos'))->get()",
+        "User::with(['bajasAutorizadas.activo', 'roles'])->where('activo', true)->whereHas('bajasAutorizadas', function ($q) { $q->whereHas('activo', function ($q2) { $q2->where('costo', '>', 1000); }); })->whereHas('roles', function ($q) { $q->where('nombre', 'Administrador de Activos'); })->get()"
+      ],
+      "expected_sqls": [
+        "SELECT u.* FROM users u INNER JOIN bajas b ON u.id = b.autorizado_por_id INNER JOIN activos a ON b.activo_id = a.id INNER JOIN role_user ru ON u.id = ru.user_id INNER JOIN roles r ON ru.role_id = r.id WHERE u.activo = TRUE AND a.costo > 1000 AND r.nombre = 'Administrador de Activos';",
+        "SELECT u.id, u.name, u.email FROM users u WHERE u.activo = TRUE AND EXISTS (SELECT 1 FROM bajas b JOIN activos a ON b.activo_id = a.id WHERE b.autorizado_por_id = u.id AND a.costo > 1000) AND EXISTS (SELECT 1 FROM role_user ru JOIN roles r ON ru.role_id = r.id WHERE ru.user_id = u.id AND r.nombre = 'Administrador de Activos');",
+        "SELECT DISTINCT T1.id, T1.name, T1.email FROM users AS T1 INNER JOIN bajas AS T2 ON T1.id = T2.autorizado_por_id INNER JOIN activos AS T3 ON T2.activo_id = T3.id INNER JOIN role_user AS T4 ON T1.id = T4.user_id INNER JOIN roles AS T5 ON T4.role_id = T5.id WHERE T1.activo = 1 AND T3.costo > 1000 AND T5.nombre = 'Administrador de Activos';"
+      ]
+    },
+    "id": "TEST-038"
+  },
+  {
+    "complexity": "complex",
+    "question": "Encontrar las categorías de activos que tienen más de 5 activos, donde al menos uno de esos activos ha tenido un mantenimiento registrado por un técnico externo en los últimos 6 meses.",
+    "gold_standards": {
+      "expected_model": "Categoria",
+      "expected_relations": [
+        "activos.mantenimientos"
+      ],
+      "expected_orms": [
+        "Categoria::has('activos', '>', 5)->whereHas('activos.mantenimientos', function ($query) { $query->whereNotNull('tecnico_externo')->where('fecha', '>=', now()->subMonths(6)); })->get()",
+        "Categoria::query()->withCount('activos')->having('activos_count', '>', 5)->whereHas('activos.mantenimientos', fn($q) => $q->whereNotNull('tecnico_externo')->where('fecha', '>=', now()->subMonths(6)))->get()",
+        "Categoria::whereHas('activos', function($q) { $q->has('mantenimientos', '>=', 1, 'and', function($q2) { $q2->whereNotNull('tecnico_externo')->where('fecha', '>=', now()->subMonths(6)); }); }, '>', 5)->get()"
+      ],
+      "expected_sqls": [
+        "SELECT c.* FROM categorias c WHERE (SELECT COUNT(*) FROM activos a WHERE a.categoria_id = c.id) > 5 AND EXISTS (SELECT 1 FROM activos a2 JOIN mantenimientos m ON a2.id = m.activo_id WHERE a2.categoria_id = c.id AND m.tecnico_externo IS NOT NULL AND m.fecha >= DATE('now', '-6 months'));",
+        "SELECT T1.id, T1.nombre FROM categorias AS T1 WHERE (SELECT COUNT(T2.id) FROM activos AS T2 WHERE T2.categoria_id = T1.id) > 5 AND EXISTS (SELECT 1 FROM activos AS T3 INNER JOIN mantenimientos AS T4 ON T3.id = T4.activo_id WHERE T3.categoria_id = T1.id AND T4.tecnico_externo IS NOT NULL AND T4.fecha >= STRFTIME('%Y-%m-%d %H:%M:%S', DATE('now', '-6 months')));",
+        "SELECT c.id, c.nombre FROM categorias c WHERE c.id IN (SELECT a.categoria_id FROM activos a GROUP BY a.categoria_id HAVING COUNT(a.id) > 5) AND EXISTS (SELECT 1 FROM activos a_sub JOIN mantenimientos m_sub ON a_sub.id = m_sub.activo_id WHERE a_sub.categoria_id = c.id AND m_sub.tecnico_externo IS NOT NULL AND m_sub.fecha >= DATE_SUB(CURRENT_DATE(), INTERVAL 6 MONTH));"
+      ]
+    },
+    "id": "TEST-039"
+  },
+  {
+    "complexity": "complex",
+    "question": "Obtener los activos que tuvieron un mantenimiento realizado por el proveedor 'TechServicios' en el último año, y que no tienen ninguna licencia con el estado 'Vigente'.",
+    "gold_standards": {
+      "expected_model": "Activo",
+      "expected_relations": [
+        "mantenimientos",
+        "licencias.estado"
+      ],
+      "expected_orms": [
+        "Activo::whereHas('mantenimientos', function ($query) { $query->where('proveedor', 'TechServicios')->where('fecha', '>=', now()->subYear()); })->whereDoesntHave('licencias', function ($query) { $query->whereHas('estado', function ($q) { $q->where('nombre', 'Vigente'); }); })->get()",
+        "Activo::query()->whereHas('mantenimientos', fn($q) => $q->whereProveedor('TechServicios')->where('fecha', '>=', now()->subYear()))->whereDoesntHave('licencias.estado', fn($q) => $q->whereNombre('Vigente'))->get()",
+        "Activo::with(['mantenimientos', 'licencias.estado'])->whereHas('mantenimientos', function ($q) { $q->where('proveedor', 'TechServicios')->where('fecha', '>=', now()->subYear()); })->whereDoesntHave('licencias', function ($q) { $q->whereHas('estado', function ($q2) { $q2->where('nombre', 'Vigente'); }); })->get()"
+      ],
+      "expected_sqls": [
+        "SELECT a.* FROM activos a WHERE EXISTS (SELECT 1 FROM mantenimientos m WHERE m.activo_id = a.id AND m.proveedor = 'TechServicios' AND m.fecha >= DATE('now', '-1 year')) AND NOT EXISTS (SELECT 1 FROM licencias l JOIN estados_licencia el ON l.estado_lic_id = el.id WHERE l.activo_id = a.id AND el.nombre = 'Vigente');",
+        "SELECT T1.id, T1.nombre, T1.codigo_inventario FROM activos AS T1 WHERE EXISTS (SELECT 1 FROM mantenimientos AS T2 WHERE T2.activo_id = T1.id AND T2.proveedor = 'TechServicios' AND T2.fecha >= STRFTIME('%Y-%m-%d %H:%M:%S', DATE('now', '-1 year'))) AND NOT EXISTS (SELECT 1 FROM licencias AS T3 INNER JOIN estados_licencia AS T4 ON T3.estado_lic_id = T4.id WHERE T3.activo_id = T1.id AND T4.nombre = 'Vigente');",
+        "SELECT A.id, A.nombre FROM activos A WHERE EXISTS (SELECT 1 FROM mantenimientos M WHERE M.activo_id = A.id AND M.proveedor = 'TechServicios' AND M.fecha >= DATE('now', '-1 year')) AND A.id NOT IN (SELECT L.activo_id FROM licencias L INNER JOIN estados_licencia EL ON L.estado_lic_id = EL.id WHERE EL.nombre = 'Vigente');"
+      ]
+    },
+    "id": "TEST-040"
+  },
+  {
+    "complexity": "complex",
+    "question": "Mostrar las ubicaciones que tienen al menos 3 activos asignados de la categoría 'Mobiliario', y que no han registrado ninguna asignación con fecha de retorno en el último trimestre.",
+    "gold_standards": {
+      "expected_model": "Ubicacion",
+      "expected_relations": [
+        "asignaciones.activo.categoria"
+      ],
+      "expected_orms": [
+        "Ubicacion::whereHas('asignaciones', function ($query) { $query->whereHas('activo.categoria', function ($q) { $q->where('nombre', 'Mobiliario'); }); }, '>=', 3)->whereDoesntHave('asignaciones', function ($query) { $query->whereNotNull('fecha_retorno')->where('fecha_retorno', '>=', now()->subMonths(3)); })->get()",
+        "Ubicacion::query()->whereHas('asignaciones.activo.categoria', fn($q) => $q->whereNombre('Mobiliario'), '>=', 3)->whereDoesntHave('asignaciones', fn($q) => $q->whereNotNull('fecha_retorno')->where('fecha_retorno', '>=', now()->subMonths(3)))->get()",
+        "Ubicacion::withCount(['asignaciones' => function ($query) { $query->whereHas('activo.categoria', fn($q) => $q->where('nombre', 'Mobiliario')); }])->having('asignaciones_count', '>=', 3)->whereDoesntHave('asignaciones', function ($query) { $query->whereNotNull('fecha_retorno')->where('fecha_retorno', '>=', now()->subMonths(3)); })->get()"
+      ],
+      "expected_sqls": [
+        "SELECT u.* FROM ubicaciones u WHERE (SELECT COUNT(*) FROM asignaciones asg JOIN activos a ON asg.activo_id = a.id JOIN categorias c ON a.categoria_id = c.id WHERE asg.ubicacion_id = u.id AND c.nombre = 'Mobiliario') >= 3 AND NOT EXISTS (SELECT 1 FROM asignaciones asg2 WHERE asg2.ubicacion_id = u.id AND asg2.fecha_retorno IS NOT NULL AND asg2.fecha_retorno >= DATE('now', '-3 months'));",
+        "SELECT T1.id, T1.nombre, T1.codigo FROM ubicaciones AS T1 WHERE (SELECT COUNT(T2.id) FROM asignaciones AS T2 INNER JOIN activos AS T3 ON T2.activo_id = T3.id INNER JOIN categorias AS T4 ON T3.categoria_id = T4.id WHERE T2.ubicacion_id = T1.id AND T4.nombre = 'Mobiliario') >= 3 AND NOT EXISTS (SELECT 1 FROM asignaciones AS T5 WHERE T5.ubicacion_id = T1.id AND T5.fecha_retorno IS NOT NULL AND T5.fecha_retorno >= STRFTIME('%Y-%m-%d %H:%M:%S', DATE('now', '-3 months')));",
+        "SELECT ubi.id, ubi.nombre FROM ubicaciones ubi WHERE ubi.id IN (SELECT asg.ubicacion_id FROM asignaciones asg JOIN activos a ON asg.activo_id = a.id JOIN categorias c ON a.categoria_id = c.id WHERE c.nombre = 'Mobiliario' GROUP BY asg.ubicacion_id HAVING COUNT(asg.id) >= 3) AND ubi.id NOT IN (SELECT asg2.ubicacion_id FROM asignaciones asg2 WHERE asg2.fecha_retorno IS NOT NULL AND asg2.fecha_retorno >= DATE_SUB(CURRENT_DATE(), INTERVAL 3 MONTH));"
+      ]
+    },
+    "id": "TEST-041"
+  },
+  {
+    "complexity": "complex",
+    "question": "Listar los permisos que están activos y que están asociados a roles activos que, a su vez, tienen asignados usuarios cuya última fecha de inicio de sesión fue en los últimos 90 días.",
+    "gold_standards": {
+      "expected_model": "Permission",
+      "expected_relations": [
+        "roles.users"
+      ],
+      "expected_orms": [
+        "Permission::where('activo', true)->whereHas('roles', function ($query) { $query->where('activo', true)->whereHas('users', function ($q) { $q->where('last_login_at', '>=', now()->subDays(90)); }); })->get()",
+        "Permission::query()->whereActivo(true)->whereHas('roles', fn($q) => $q->whereActivo(true)->whereHas('users', fn($q2) => $q2->where('last_login_at', '>=', now()->subDays(90))))->get()",
+        "Permission::with(['roles.users'])->where('activo', true)->whereHas('roles', function ($q) { $q->where('activo', true)->whereHas('users', function ($q2) { $q2->where('last_login_at', '>=', now()->subDays(90)); }); })->get()"
+      ],
+      "expected_sqls": [
+        "SELECT p.* FROM permissions p INNER JOIN permission_role pr ON p.id = pr.permission_id INNER JOIN roles r ON pr.role_id = r.id INNER JOIN role_user ru ON r.id = ru.role_id INNER JOIN users u ON ru.user_id = u.id WHERE p.activo = TRUE AND r.activo = TRUE AND u.last_login_at >= DATE('now', '-90 days');",
+        "SELECT p.id, p.nombre FROM permissions p WHERE p.activo = TRUE AND EXISTS (SELECT 1 FROM permission_role pr JOIN roles r ON pr.role_id = r.id JOIN role_user ru ON r.id = ru.role_id JOIN users u ON ru.user_id = u.id WHERE pr.permission_id = p.id AND r.activo = TRUE AND u.last_login_at >= DATE('now', '-90 days'));",
+        "SELECT DISTINCT T1.id, T1.nombre, T1.descripcion FROM permissions AS T1 INNER JOIN permission_role AS T2 ON T1.id = T2.permission_id INNER JOIN roles AS T3 ON T2.role_id = T3.id INNER JOIN role_user AS T4 ON T3.id = T4.role_id INNER JOIN users AS T5 ON T4.user_id = T5.id WHERE T1.activo = 1 AND T3.activo = 1 AND T5.last_login_at >= DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 90 DAY);"
+      ]
+    },
+    "id": "TEST-042"
+  },
+  {
+    "complexity": "complex",
+    "question": "Encontrar los eventos de auditoría realizados sobre la tabla 'activos' por usuarios que tienen un rol 'Editor de Contenido', donde la acción fue una 'Actualización' y el campo 'descripcion' fue modificado (es decir, 'antes' y 'despues' contienen la clave 'descripcion').",
+    "gold_standards": {
+      "expected_model": "AuditoriaEvento",
+      "expected_relations": [
+        "usuario.roles"
+      ],
+      "expected_orms": [
+        "AuditoriaEvento::where('tabla', 'activos')->where('accion', 'Actualización')->whereRaw('JSON_EXTRACT(antes, \"$.descripcion\") IS NOT NULL')->whereRaw('JSON_EXTRACT(despues, \"$.descripcion\") IS NOT NULL')->whereHas('usuario.roles', function ($query) { $query->where('nombre', 'Editor de Contenido'); })->get()",
+        "AuditoriaEvento::query()->whereTabla('activos')->whereAccion('Actualización')->whereRaw('JSON_EXTRACT(antes, \"$.descripcion\") IS NOT NULL')->whereRaw('JSON_EXTRACT(despues, \"$.descripcion\") IS NOT NULL')->whereHas('usuario.roles', fn($q) => $q->whereNombre('Editor de Contenido'))->get()",
+        "AuditoriaEvento::with('usuario.roles')->where('tabla', 'activos')->where('accion', 'Actualización')->whereRaw('JSON_EXTRACT(antes, \"$.descripcion\") IS NOT NULL AND JSON_EXTRACT(despues, \"$.descripcion\") IS NOT NULL')->whereHas('usuario.roles', function ($q) { $q->where('nombre', 'Editor de Contenido'); })->get()"
+      ],
+      "expected_sqls": [
+        "SELECT ae.* FROM auditoria_eventos ae INNER JOIN users u ON ae.usuario_id = u.id INNER JOIN role_user ru ON u.id = ru.user_id INNER JOIN roles r ON ru.role_id = r.id WHERE ae.tabla = 'activos' AND ae.accion = 'Actualización' AND JSON_EXTRACT(ae.antes, '$.descripcion') IS NOT NULL AND JSON_EXTRACT(ae.despues, '$.descripcion') IS NOT NULL AND r.nombre = 'Editor de Contenido';",
+        "SELECT ae.id, ae.accion, ae.tabla FROM auditoria_eventos ae WHERE ae.tabla = 'activos' AND ae.accion = 'Actualización' AND JSON_EXTRACT(ae.antes, '$.descripcion') IS NOT NULL AND JSON_EXTRACT(ae.despues, '$.descripcion') IS NOT NULL AND EXISTS (SELECT 1 FROM users u JOIN role_user ru ON u.id = ru.user_id JOIN roles r ON ru.role_id = r.id WHERE u.id = ae.usuario_id AND r.nombre = 'Editor de Contenido');",
+        "SELECT T1.id, T1.accion, T1.tabla, T1.usuario_id FROM auditoria_eventos AS T1 INNER JOIN users AS T2 ON T1.usuario_id = T2.id INNER JOIN role_user AS T3 ON T2.id = T3.user_id INNER JOIN roles AS T4 ON T3.role_id = T4.id WHERE T1.tabla = 'activos' AND T1.accion = 'Actualización' AND JSON_EXTRACT(T1.antes, '$.descripcion') IS NOT NULL AND JSON_EXTRACT(T1.despues, '$.descripcion') IS NOT NULL AND T4.nombre = 'Editor de Contenido';"
+      ]
+    },
+    "id": "TEST-043"
+  },
+  {
+    "complexity": "complex",
+    "question": "Obtener los activos de la categoría 'Electrónica' con un costo superior al costo promedio de todos los activos de su categoría, y que no han registrado ningún mantenimiento en los últimos 9 meses.",
+    "gold_standards": {
+      "expected_model": "Activo",
+      "expected_relations": [
+        "categoria",
+        "mantenimientos"
+      ],
+      "expected_orms": [
+        "Activo::whereHas('categoria', function ($query) { $query->where('nombre', 'Electrónica'); })->whereColumn('costo', '>', function ($query) { $query->selectRaw('AVG(costo)')->from('activos')->whereColumn('categoria_id', 'activos.categoria_id'); })->whereDoesntHave('mantenimientos', function ($query) { $query->where('fecha', '>=', now()->subMonths(9)); })->get()",
+        "Activo::query()->whereHas('categoria', fn($q) => $q->whereNombre('Electrónica'))->whereColumn('costo', '>', fn($q) => $q->selectRaw('AVG(costo)')->from('activos')->whereColumn('categoria_id', 'activos.categoria_id'))->whereDoesntHave('mantenimientos', fn($q) => $q->where('fecha', '>=', now()->subMonths(9)))->get()",
+        "Activo::with(['categoria', 'mantenimientos'])->whereHas('categoria', function ($q) { $q->where('nombre', 'Electrónica'); })->whereRaw('activos.costo > (SELECT AVG(a2.costo) FROM activos a2 WHERE a2.categoria_id = activos.categoria_id)')->whereDoesntHave('mantenimientos', function ($q) { $q->where('fecha', '>=', now()->subMonths(9)); })->get()"
+      ],
+      "expected_sqls": [
+        "SELECT a.* FROM activos a INNER JOIN categorias c ON a.categoria_id = c.id WHERE c.nombre = 'Electrónica' AND a.costo > (SELECT AVG(a2.costo) FROM activos a2 WHERE a2.categoria_id = a.categoria_id) AND NOT EXISTS (SELECT 1 FROM mantenimientos m WHERE m.activo_id = a.id AND m.fecha >= DATE('now', '-9 months'));",
+        "SELECT a.id, a.nombre, a.costo FROM activos a WHERE a.categoria_id IN (SELECT id FROM categorias WHERE nombre = 'Electrónica') AND a.costo > (SELECT AVG(costo) FROM activos WHERE categoria_id = a.categoria_id) AND NOT EXISTS (SELECT 1 FROM mantenimientos m WHERE m.activo_id = a.id AND m.fecha >= STRFTIME('%Y-%m-%d %H:%M:%S', DATE('now', '-9 months')));",
+        "SELECT T1.id, T1.nombre, T1.codigo_inventario FROM activos AS T1 INNER JOIN categorias AS T2 ON T1.categoria_id = T2.id WHERE T2.nombre = 'Electrónica' AND T1.costo > (SELECT AVG(T3.costo) FROM activos AS T3 WHERE T3.categoria_id = T1.categoria_id) AND T1.id NOT IN (SELECT T4.activo_id FROM mantenimientos AS T4 WHERE T4.fecha >= DATE_SUB(CURRENT_DATE(), INTERVAL 9 MONTH));"
+      ]
+    },
+    "id": "TEST-044"
+  },
+  {
+    "complexity": "complex",
+    "question": "Mostrar los usuarios que no tienen ningún rol asignado y que tienen al menos un activo asignado que se encuentra en un estado 'En Reparación' y cuyo código de inventario comienza con 'REP-'.",
+    "gold_standards": {
+      "expected_model": "User",
+      "expected_relations": [
+        "roles",
+        "asignaciones.activo.estado"
+      ],
+      "expected_orms": [
+        "User::whereDoesntHave('roles')->whereHas('asignaciones.activo', function ($query) { $query->where('codigo_inventario', 'LIKE', 'REP-%')->whereHas('estado', function ($q) { $q->where('nombre', 'En Reparación'); }); })->get()",
+        "User::query()->whereDoesntHave('roles')->whereHas('asignaciones.activo.estado', fn($q) => $q->whereNombre('En Reparación'))->whereHas('asignaciones.activo', fn($q) => $q->where('codigo_inventario', 'LIKE', 'REP-%'))->get()",
+        "User::with(['roles', 'asignaciones.activo.estado'])->whereDoesntHave('roles')->whereHas('asignaciones', function ($q) { $q->whereHas('activo', function ($q2) { $q2->where('codigo_inventario', 'LIKE', 'REP-%')->whereHas('estado', function ($q3) { $q3->where('nombre', 'En Reparación'); }); }); })->get()"
+      ],
+      "expected_sqls": [
+        "SELECT u.* FROM users u WHERE NOT EXISTS (SELECT 1 FROM role_user ru WHERE ru.user_id = u.id) AND EXISTS (SELECT 1 FROM asignaciones asg JOIN activos a ON asg.activo_id = a.id JOIN estados_activo ea ON a.estado_id = ea.id WHERE asg.responsable_id = u.id AND a.codigo_inventario LIKE 'REP-%' AND ea.nombre = 'En Reparación');",
+        "SELECT u.id, u.name, u.email FROM users u WHERE u.id NOT IN (SELECT user_id FROM role_user) AND EXISTS (SELECT 1 FROM asignaciones asg JOIN activos a ON asg.activo_id = a.id JOIN estados_activo ea ON a.estado_id = ea.id WHERE asg.responsable_id = u.id AND a.codigo_inventario LIKE 'REP-%' AND ea.nombre = 'En Reparación');",
+        "SELECT DISTINCT T1.id, T1.name FROM users AS T1 LEFT JOIN role_user AS T2 ON T1.id = T2.user_id WHERE T2.user_id IS NULL AND EXISTS (SELECT 1 FROM asignaciones AS T3 INNER JOIN activos AS T4 ON T3.activo_id = T4.id INNER JOIN estados_activo AS T5 ON T4.estado_id = T5.id WHERE T3.responsable_id = T1.id AND T4.codigo_inventario LIKE 'REP-%' AND T5.nombre = 'En Reparación');"
+      ]
+    },
+    "id": "TEST-045"
+  },
+  {
+    "complexity": "complex",
+    "question": "Listar los nombres de proveedores (de licencias) que han emitido al menos 3 licencias del tipo 'Antivirus' que se encuentran en estado 'Vigente' y que están asociadas a activos comprados antes del año 2022.",
+    "gold_standards": {
+      "expected_model": "Licencia",
+      "expected_relations": [
+        "activo",
+        "estado"
+      ],
+      "expected_orms": [
+        "Licencia::select('proveedor')->where('tipo', 'Antivirus')->whereHas('estado', function ($query) { $query->where('nombre', 'Vigente'); })->whereHas('activo', function ($query) { $query->where('fecha_compra', '<', '2022-01-01'); })->groupBy('proveedor')->havingRaw('COUNT(id) >= 3')->get()",
+        "Licencia::query()->select('proveedor')->whereTipo('Antivirus')->whereHas('estado', fn($q) => $q->whereNombre('Vigente'))->whereHas('activo', fn($q) => $q->whereDate('fecha_compra', '<', '2022-01-01'))->groupBy('proveedor')->havingRaw('COUNT(*) >= 3')->pluck('proveedor')",
+        "Licencia::with(['activo', 'estado'])->select('proveedor')->where('tipo', 'Antivirus')->whereHas('estado', function ($q) { $q->where('nombre', 'Vigente'); })->whereHas('activo', function ($q) { $q->whereDate('fecha_compra', '<', '2022-01-01'); })->groupBy('proveedor')->having('count(*)', '>=', 3)->get()"
+      ],
+      "expected_sqls": [
+        "SELECT l.proveedor FROM licencias l INNER JOIN estados_licencia el ON l.estado_lic_id = el.id INNER JOIN activos a ON l.activo_id = a.id WHERE l.tipo = 'Antivirus' AND el.nombre = 'Vigente' AND a.fecha_compra < '2022-01-01' GROUP BY l.proveedor HAVING COUNT(l.id) >= 3;",
+        "SELECT DISTINCT l.proveedor FROM licencias l WHERE l.tipo = 'Antivirus' AND EXISTS (SELECT 1 FROM estados_licencia el WHERE el.id = l.estado_lic_id AND el.nombre = 'Vigente') AND EXISTS (SELECT 1 FROM activos a WHERE a.id = l.activo_id AND a.fecha_compra < '2022-01-01') GROUP BY l.proveedor HAVING COUNT(l.id) >= 3;",
+        "SELECT T1.proveedor FROM licencias AS T1 INNER JOIN estados_licencia AS T2 ON T1.estado_lic_id = T2.id INNER JOIN activos AS T3 ON T1.activo_id = T3.id WHERE T1.tipo = 'Antivirus' AND T2.nombre = 'Vigente' AND T3.fecha_compra < '2022-01-01' GROUP BY T1.proveedor HAVING COUNT(T1.id) >= 3;"
+      ]
+    },
+    "id": "TEST-046"
+  },
+  {
+    "complexity": "complex",
+    "question": "Identificar los mantenimientos cuyo costo es superior al costo promedio de todos los mantenimientos realizados para el mismo activo, y donde el técnico asociado al mantenimiento no tiene roles activos.",
+    "gold_standards": {
+      "expected_model": "Mantenimiento",
+      "expected_relations": [
+        "activo.mantenimientos",
+        "tecnico.roles"
+      ],
+      "expected_orms": [
+        "Mantenimiento::whereColumn('costo', '>', function ($query) { $query->selectRaw('AVG(costo)')->from('mantenimientos')->whereColumn('activo_id', 'mantenimientos.activo_id'); })->whereHas('tecnico', function ($query) { $query->whereDoesntHave('roles', function ($q) { $q->where('activo', true); }); })->get()",
+        "Mantenimiento::query()->whereColumn('costo', '>', fn($q) => $q->selectRaw('AVG(costo)')->from('mantenimientos')->whereColumn('activo_id', 'mantenimientos.activo_id'))->whereHas('tecnico', fn($q) => $q->whereDoesntHave('roles', fn($q2) => $q2->where('activo', true)))->get()",
+        "Mantenimiento::with(['activo', 'tecnico.roles'])->whereRaw('mantenimientos.costo > (SELECT AVG(m2.costo) FROM mantenimientos m2 WHERE m2.activo_id = mantenimientos.activo_id)')->whereHas('tecnico', function ($q) { $q->whereDoesntHave('roles', function ($q2) { $q2->where('activo', true); }); })->get()"
+      ],
+      "expected_sqls": [
+        "SELECT m.* FROM mantenimientos m WHERE m.costo > (SELECT AVG(m2.costo) FROM mantenimientos m2 WHERE m2.activo_id = m.activo_id) AND NOT EXISTS (SELECT 1 FROM role_user ru JOIN roles r ON ru.role_id = r.id WHERE ru.user_id = m.tecnico_id AND r.activo = TRUE);",
+        "SELECT m.id, m.fecha, m.costo FROM mantenimientos m WHERE m.costo > (SELECT AVG(costo) FROM mantenimientos WHERE activo_id = m.activo_id) AND m.tecnico_id NOT IN (SELECT ru.user_id FROM role_user ru JOIN roles r ON ru.role_id = r.id WHERE r.activo = TRUE);",
+        "SELECT T1.id, T1.fecha, T1.costo FROM mantenimientos AS T1 WHERE T1.costo > (SELECT AVG(T2.costo) FROM mantenimientos AS T2 WHERE T2.activo_id = T1.activo_id) AND T1.tecnico_id IS NOT NULL AND NOT EXISTS (SELECT 1 FROM role_user AS T3 INNER JOIN roles AS T4 ON T3.role_id = T4.id WHERE T3.user_id = T1.tecnico_id AND T4.activo = 1);"
+      ]
+    },
+    "id": "TEST-047"
+  },
+  {
+    "complexity": "complex",
+    "question": "Encontrar los activos que pertenecen a la categoría 'Informática' y que no tienen ninguna licencia vigente (es decir, no tienen licencias o todas sus licencias están en estados que no son 'Vigente').",
+    "gold_standards": {
+      "expected_model": "Activo",
+      "expected_relations": [
+        "categoria",
+        "licencias.estado"
+      ],
+      "expected_orms": [
+        "Activo::whereHas('categoria', function ($query) { $query->where('nombre', 'Informática'); })->whereDoesntHave('licencias', function ($query) { $query->whereHas('estado', function ($q) { $q->where('nombre', 'Vigente'); }); })->get()",
+        "Activo::query()->whereHas('categoria', fn($q) => $q->whereNombre('Informática'))->whereDoesntHave('licencias.estado', fn($q) => $q->whereNombre('Vigente'))->get()",
+        "Activo::with(['categoria', 'licencias.estado'])->whereHas('categoria', function ($q) { $q->where('nombre', 'Informática'); })->whereDoesntHave('licencias', function ($q) { $q->whereHas('estado', function ($q2) { $q2->where('nombre', 'Vigente'); }); })->get()"
+      ],
+      "expected_sqls": [
+        "SELECT a.* FROM activos a INNER JOIN categorias c ON a.categoria_id = c.id WHERE c.nombre = 'Informática' AND NOT EXISTS (SELECT 1 FROM licencias l JOIN estados_licencia el ON l.estado_lic_id = el.id WHERE l.activo_id = a.id AND el.nombre = 'Vigente');",
+        "SELECT a.id, a.nombre, a.codigo_inventario FROM activos a WHERE a.categoria_id = (SELECT id FROM categorias WHERE nombre = 'Informática') AND NOT EXISTS (SELECT 1 FROM licencias l JOIN estados_licencia el ON l.estado_lic_id = el.id WHERE l.activo_id = a.id AND el.nombre = 'Vigente');",
+        "SELECT T1.id, T1.nombre FROM activos AS T1 INNER JOIN categorias AS T2 ON T1.categoria_id = T2.id LEFT JOIN (SELECT DISTINCT activo_id FROM licencias INNER JOIN estados_licencia ON licencias.estado_lic_id = estados_licencia.id WHERE estados_licencia.nombre = 'Vigente') AS T3 ON T1.id = T3.activo_id WHERE T2.nombre = 'Informática' AND T3.activo_id IS NULL;"
+      ]
+    },
+    "id": "TEST-048"
+  },
+  {
+    "complexity": "complex",
+    "question": "Mostrar los roles que tienen al menos 3 permisos activos asignados y que están asociados a usuarios cuyo nombre contiene la palabra 'Gerente'.",
+    "gold_standards": {
+      "expected_model": "Role",
+      "expected_relations": [
+        "permissions",
+        "users"
+      ],
+      "expected_orms": [
+        "Role::whereHas('permissions', function ($query) { $query->where('activo', true); }, '>=', 3)->whereHas('users', function ($query) { $query->where('name', 'LIKE', '%Gerente%'); })->get()",
+        "Role::query()->whereHas('permissions', fn($q) => $q->whereActivo(true), '>=', 3)->whereHas('users', fn($q) => $q->where('name', 'LIKE', '%Gerente%'))->get()",
+        "Role::withCount(['permissions' => function ($query) { $query->where('activo', true); }])->having('permissions_count', '>=', 3)->whereHas('users', function ($query) { $query->where('name', 'LIKE', '%Gerente%'); })->get()"
+      ],
+      "expected_sqls": [
+        "SELECT r.* FROM roles r WHERE (SELECT COUNT(*) FROM permission_role pr JOIN permissions p ON pr.permission_id = p.id WHERE pr.role_id = r.id AND p.activo = TRUE) >= 3 AND EXISTS (SELECT 1 FROM role_user ru JOIN users u ON ru.user_id = u.id WHERE ru.role_id = r.id AND u.name LIKE '%Gerente%');",
+        "SELECT r.id, r.nombre FROM roles r WHERE r.id IN (SELECT pr.role_id FROM permission_role pr JOIN permissions p ON pr.permission_id = p.id WHERE p.activo = TRUE GROUP BY pr.role_id HAVING COUNT(pr.permission_id) >= 3) AND EXISTS (SELECT 1 FROM role_user ru JOIN users u ON ru.user_id = u.id WHERE ru.role_id = r.id AND u.name LIKE '%Gerente%');",
+        "SELECT DISTINCT T1.id, T1.nombre FROM roles AS T1 INNER JOIN permission_role AS T2 ON T1.id = T2.role_id INNER JOIN permissions AS T3 ON T2.permission_id = T3.id INNER JOIN role_user AS T4 ON T1.id = T4.role_id INNER JOIN users AS T5 ON T4.user_id = T5.id WHERE T3.activo = 1 AND T5.name LIKE '%Gerente%' GROUP BY T1.id, T1.nombre HAVING COUNT(DISTINCT T3.id) >= 3;"
+      ]
+    },
+    "id": "TEST-049"
+  },
+  {
+    "complexity": "complex",
+    "question": "Recuperar los activos que han sido asignados al menos dos veces a la misma ubicación, y que su última asignación activa (sin fecha de retorno) ocurrió hace más de un año.",
+    "gold_standards": {
+      "expected_model": "Activo",
+      "expected_relations": [
+        "asignaciones"
+      ],
+      "expected_orms": [
+        "Activo::whereHas('asignaciones', function ($query) { $query->select('ubicacion_id')->groupBy('ubicacion_id')->havingRaw('COUNT(id) >= 2'); })->whereDoesntHave('asignaciones', function ($query) { $query->whereNull('fecha_retorno')->where('fecha_asignacion', '>=', now()->subYear()); })->get()",
+        "Activo::query()->whereHas('asignaciones', fn($q) => $q->select('ubicacion_id')->groupBy('ubicacion_id')->havingRaw('COUNT(id) >= 2'))->whereDoesntHave('asignaciones', fn($q) => $q->whereNull('fecha_retorno')->where('fecha_asignacion', '>=', now()->subYear()))->get()",
+        "Activo::whereRaw('(SELECT COUNT(*) FROM (SELECT ubicacion_id FROM asignaciones WHERE activo_id = activos.id GROUP BY ubicacion_id HAVING COUNT(id) >= 2) AS grouped_asg) >= 1')->whereDoesntHave('asignaciones', function ($q) { $q->whereNull('fecha_retorno')->where('fecha_asignacion', '>=', now()->subYear()); })->get()"
+      ],
+      "expected_sqls": [
+        "SELECT a.* FROM activos a WHERE EXISTS (SELECT 1 FROM asignaciones asg GROUP BY asg.ubicacion_id, asg.activo_id HAVING COUNT(asg.id) >= 2 AND asg.activo_id = a.id) AND NOT EXISTS (SELECT 1 FROM asignaciones asg2 WHERE asg2.activo_id = a.id AND asg2.fecha_retorno IS NULL AND asg2.fecha_asignacion >= DATE('now', '-1 year'));",
+        "SELECT a.id, a.nombre, a.codigo_inventario FROM activos a WHERE a.id IN (SELECT activo_id FROM asignaciones GROUP BY activo_id, ubicacion_id HAVING COUNT(id) >= 2) AND NOT EXISTS (SELECT 1 FROM asignaciones asg WHERE asg.activo_id = a.id AND asg.fecha_retorno IS NULL AND asg.fecha_asignacion >= STRFTIME('%Y-%m-%d %H:%M:%S', DATE('now', '-1 year')));",
+        "SELECT T1.id, T1.nombre FROM activos AS T1 WHERE T1.id IN (SELECT T2.activo_id FROM asignaciones AS T2 GROUP BY T2.activo_id, T2.ubicacion_id HAVING COUNT(T2.id) >= 2) AND NOT EXISTS (SELECT 1 FROM asignaciones AS T3 WHERE T3.activo_id = T1.id AND T3.fecha_retorno IS NULL AND T3.fecha_asignacion >= DATE_SUB(CURRENT_DATE(), INTERVAL 1 YEAR));"
+      ]
+    },
+    "id": "TEST-050"
+  }
+]

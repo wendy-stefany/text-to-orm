@@ -1,0 +1,1018 @@
+[
+  {
+    "complexity": "simple",
+    "question": "Obtén todos los usuarios cuyas direcciones de correo electrónico aún no han sido verificadas.",
+    "gold_standards": {
+      "expected_model": "User",
+      "expected_relations": [],
+      "expected_orms": [
+        "User::whereNull('email_verified_at')->get()",
+        "User::query()->where('email_verified_at', null)->get()",
+        "User::where(['email_verified_at' => null])->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM users WHERE email_verified_at IS NULL;",
+        "SELECT u.* FROM users u WHERE u.email_verified_at IS NULL;",
+        "SELECT id, first_name, last_name, email FROM users WHERE email_verified_at IS NULL;"
+      ]
+    },
+    "id": "TEST-001"
+  },
+  {
+    "complexity": "simple",
+    "question": "Lista todos los contactos que no pueden ser eliminados.",
+    "gold_standards": {
+      "expected_model": "Contact",
+      "expected_relations": [],
+      "expected_orms": [
+        "Contact::where('can_be_deleted', false)->get()",
+        "Contact::query()->where('can_be_deleted', '=', 0)->get()",
+        "Contact::whereCanBeDeleted(0)->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM contacts WHERE can_be_deleted = 0;",
+        "SELECT c.* FROM contacts c WHERE c.can_be_deleted = FALSE;",
+        "SELECT id, first_name, last_name, can_be_deleted FROM contacts WHERE can_be_deleted = 0;"
+      ]
+    },
+    "id": "TEST-002"
+  },
+  {
+    "complexity": "simple",
+    "question": "Encuentra todos los repositorios (vaults) que tienen la pestaña de grupos visible.",
+    "gold_standards": {
+      "expected_model": "Vault",
+      "expected_relations": [],
+      "expected_orms": [
+        "Vault::where('show_group_tab', true)->get()",
+        "Vault::query()->whereShowGroupTab(1)->get()",
+        "Vault::where('show_group_tab', '=', true)->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM vaults WHERE show_group_tab = 1;",
+        "SELECT v.* FROM vaults v WHERE v.show_group_tab = TRUE;",
+        "SELECT id, name, description, show_group_tab FROM vaults WHERE show_group_tab = 1;"
+      ]
+    },
+    "id": "TEST-003"
+  },
+  {
+    "complexity": "simple",
+    "question": "Obtén los diarios cuyo nombre contiene la palabra 'Personal'.",
+    "gold_standards": {
+      "expected_model": "Journal",
+      "expected_relations": [],
+      "expected_orms": [
+        "Journal::where('name', 'like', '%Personal%')->get()",
+        "Journal::query()->where('name', 'LIKE', '%Personal%')->get()",
+        "Journal::whereRaw('name LIKE ?', ['%Personal%'])->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM journals WHERE name LIKE '%Personal%';",
+        "SELECT j.* FROM journals j WHERE j.name LIKE '%Personal%';",
+        "SELECT id, name, description FROM journals WHERE name LIKE '%Personal%';"
+      ]
+    },
+    "id": "TEST-004"
+  },
+  {
+    "complexity": "simple",
+    "question": "Muestra todas las publicaciones que ya han sido publicadas.",
+    "gold_standards": {
+      "expected_model": "Post",
+      "expected_relations": [],
+      "expected_orms": [
+        "Post::where('published', true)->get()",
+        "Post::query()->where('published', 1)->get()",
+        "Post::wherePublished(true)->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM posts WHERE published = 1;",
+        "SELECT p.* FROM posts p WHERE p.published = TRUE;",
+        "SELECT id, title, published, written_at FROM posts WHERE published = 1;"
+      ]
+    },
+    "id": "TEST-005"
+  },
+  {
+    "complexity": "simple",
+    "question": "Recupera todas las etiquetas existentes.",
+    "gold_standards": {
+      "expected_model": "Label",
+      "expected_relations": [],
+      "expected_orms": [
+        "Label::all()",
+        "Label::get()",
+        "Label::query()->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM labels;",
+        "SELECT l.* FROM labels l;",
+        "SELECT id, name, slug, description FROM labels;"
+      ]
+    },
+    "id": "TEST-006"
+  },
+  {
+    "complexity": "simple",
+    "question": "Lista todos los objetivos que se encuentran activos.",
+    "gold_standards": {
+      "expected_model": "Goal",
+      "expected_relations": [],
+      "expected_orms": [
+        "Goal::where('active', true)->get()",
+        "Goal::query()->where('active', 1)->get()",
+        "Goal::whereActive(true)->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM goals WHERE active = 1;",
+        "SELECT g.* FROM goals g WHERE g.active = TRUE;",
+        "SELECT id, name, active FROM goals WHERE active = 1;"
+      ]
+    },
+    "id": "TEST-007"
+  },
+  {
+    "complexity": "simple",
+    "question": "Obtén las compañías que son de tipo 'Cliente'.",
+    "gold_standards": {
+      "expected_model": "Company",
+      "expected_relations": [],
+      "expected_orms": [
+        "Company::where('type', 'Cliente')->get()",
+        "Company::query()->whereType('Cliente')->get()",
+        "Company::where('type', '=', 'Cliente')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM companies WHERE type = 'Cliente';",
+        "SELECT c.* FROM companies c WHERE c.type = 'Cliente';",
+        "SELECT id, name, type FROM companies WHERE type = 'Cliente';"
+      ]
+    },
+    "id": "TEST-008"
+  },
+  {
+    "complexity": "simple",
+    "question": "Encuentra todos los archivos que tienen un tipo MIME de 'image/jpeg'.",
+    "gold_standards": {
+      "expected_model": "File",
+      "expected_relations": [],
+      "expected_orms": [
+        "File::where('mime_type', 'image/jpeg')->get()",
+        "File::query()->where('mime_type', 'LIKE', 'image/jpeg')->get()",
+        "File::whereMimeType('image/jpeg')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM files WHERE mime_type = 'image/jpeg';",
+        "SELECT f.* FROM files f WHERE f.mime_type = 'image/jpeg';",
+        "SELECT id, name, mime_type, size FROM files WHERE mime_type = 'image/jpeg';"
+      ]
+    },
+    "id": "TEST-009"
+  },
+  {
+    "complexity": "simple",
+    "question": "Lista todas las direcciones ubicadas en 'España'.",
+    "gold_standards": {
+      "expected_model": "Address",
+      "expected_relations": [],
+      "expected_orms": [
+        "Address::where('country', 'España')->get()",
+        "Address::query()->whereCountry('España')->get()",
+        "Address::where(['country' => 'España'])->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM addresses WHERE country = 'España';",
+        "SELECT a.* FROM addresses a WHERE a.country = 'España';",
+        "SELECT id, line_1, city, country, postal_code FROM addresses WHERE country = 'España';"
+      ]
+    },
+    "id": "TEST-010"
+  },
+  {
+    "complexity": "simple",
+    "question": "Busca todas las mascotas llamadas 'Max'.",
+    "gold_standards": {
+      "expected_model": "Pet",
+      "expected_relations": [],
+      "expected_orms": [
+        "Pet::where('name', 'Max')->get()",
+        "Pet::query()->where('name', '=', 'Max')->get()",
+        "Pet::whereName('Max')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM pets WHERE name = 'Max';",
+        "SELECT p.* FROM pets p WHERE p.name = 'Max';",
+        "SELECT id, name, pet_category_id FROM pets WHERE name = 'Max';"
+      ]
+    },
+    "id": "TEST-011"
+  },
+  {
+    "complexity": "simple",
+    "question": "Obtén todos los préstamos que aún no han sido liquidados.",
+    "gold_standards": {
+      "expected_model": "Loan",
+      "expected_relations": [],
+      "expected_orms": [
+        "Loan::where('settled', false)->get()",
+        "Loan::query()->where('settled', 0)->get()",
+        "Loan::whereSettled(false)->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM loans WHERE settled = 0;",
+        "SELECT l.* FROM loans l WHERE l.settled = FALSE;",
+        "SELECT id, name, amount_lent, settled FROM loans WHERE settled = 0;"
+      ]
+    },
+    "id": "TEST-012"
+  },
+  {
+    "complexity": "simple",
+    "question": "Recupera todas las notas cuyo título incluya la palabra 'Reunión'.",
+    "gold_standards": {
+      "expected_model": "Note",
+      "expected_relations": [],
+      "expected_orms": [
+        "Note::where('title', 'like', '%Reunión%')->get()",
+        "Note::query()->where('title', 'LIKE', '%Reunión%')->get()",
+        "Note::whereRaw('title LIKE ?', ['%Reunión%'])->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM notes WHERE title LIKE '%Reunión%';",
+        "SELECT n.* FROM notes n WHERE n.title LIKE '%Reunión%';",
+        "SELECT id, title, body FROM notes WHERE title LIKE '%Reunión%';"
+      ]
+    },
+    "id": "TEST-013"
+  },
+  {
+    "complexity": "simple",
+    "question": "Encuentra todas las fechas importantes de contactos que ocurran en el mes de Enero (mes 1).",
+    "gold_standards": {
+      "expected_model": "ContactImportantDate",
+      "expected_relations": [],
+      "expected_orms": [
+        "ContactImportantDate::where('month', 1)->get()",
+        "ContactImportantDate::query()->whereMonth(1)->get()",
+        "ContactImportantDate::where('month', '=', 1)->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM contact_important_dates WHERE month = 1;",
+        "SELECT cid.* FROM contact_important_dates cid WHERE cid.month = 1;",
+        "SELECT id, label, day, month, year FROM contact_important_dates WHERE month = 1;"
+      ]
+    },
+    "id": "TEST-014"
+  },
+  {
+    "complexity": "simple",
+    "question": "Muestra todos los canales de notificación de usuario que están activos.",
+    "gold_standards": {
+      "expected_model": "UserNotificationChannel",
+      "expected_relations": [],
+      "expected_orms": [
+        "UserNotificationChannel::where('active', true)->get()",
+        "UserNotificationChannel::query()->where('active', 1)->get()",
+        "UserNotificationChannel::whereActive(true)->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM user_notification_channels WHERE active = 1;",
+        "SELECT unc.* FROM user_notification_channels unc WHERE unc.active = TRUE;",
+        "SELECT id, label, type, content, active FROM user_notification_channels WHERE active = 1;"
+      ]
+    },
+    "id": "TEST-015"
+  },
+  {
+    "complexity": "simple",
+    "question": "Recupera todos los registros de rachas (streaks) sin filtros.",
+    "gold_standards": {
+      "expected_model": "Streak",
+      "expected_relations": [],
+      "expected_orms": [
+        "Streak::all()",
+        "Streak::get()",
+        "Streak::query()->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM streaks;",
+        "SELECT s.* FROM streaks s;",
+        "SELECT id, goal_id, happened_at FROM streaks;"
+      ]
+    },
+    "id": "TEST-016"
+  },
+  {
+    "complexity": "simple",
+    "question": "Obtén todos los pronombres disponibles.",
+    "gold_standards": {
+      "expected_model": "Pronoun",
+      "expected_relations": [],
+      "expected_orms": [
+        "Pronoun::all()",
+        "Pronoun::get()",
+        "Pronoun::query()->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM pronouns;",
+        "SELECT p.* FROM pronouns p;",
+        "SELECT id, name, name_translation_key FROM pronouns;"
+      ]
+    },
+    "id": "TEST-017"
+  },
+  {
+    "complexity": "medium",
+    "question": "Obtén los usuarios que son administradores de la cuenta y tienen su correo electrónico verificado, mostrando su nombre y apellido.",
+    "gold_standards": {
+      "expected_model": "User",
+      "expected_relations": [],
+      "expected_orms": [
+        "User::where('is_account_administrator', true)->whereNotNull('email_verified_at')->select('first_name', 'last_name', 'email')->get()",
+        "User::query()->whereIsAccountAdministrator(true)->where('email_verified_at', '!=', null)->get(['first_name', 'last_name'])",
+        "User::where(['is_account_administrator' => true])->whereNotNull('email_verified_at')->get(['first_name', 'last_name', 'email'])"
+      ],
+      "expected_sqls": [
+        "SELECT first_name, last_name, email FROM users WHERE is_account_administrator = 1 AND email_verified_at IS NOT NULL;",
+        "SELECT u.first_name, u.last_name FROM users AS u WHERE u.is_account_administrator = TRUE AND u.email_verified_at IS NOT NULL;",
+        "SELECT first_name, last_name, email FROM users WHERE is_account_administrator = 1 AND email_verified_at IS NOT NULL;"
+      ]
+    },
+    "id": "TEST-018"
+  },
+  {
+    "complexity": "medium",
+    "question": "Encuentra contactos que trabajan en una empresa llamada 'Tech Innovators' y cuyo puesto de trabajo es 'Software Engineer'.",
+    "gold_standards": {
+      "expected_model": "Contact",
+      "expected_relations": [
+        "company"
+      ],
+      "expected_orms": [
+        "Contact::whereHas('company', function ($query) { $query->where('name', 'Tech Innovators'); })->where('job_position', 'Software Engineer')->get()",
+        "Contact::query()->whereHas('company', fn($query) => $query->whereName('Tech Innovators'))->whereJobPosition('Software Engineer')->get()",
+        "Contact::with('company')->whereHas('company', function ($query) { $query->where('name', '=', 'Tech Innovators'); })->where('job_position', 'Software Engineer')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT C.* FROM contacts C JOIN companies CO ON C.company_id = CO.id WHERE CO.name = 'Tech Innovators' AND C.job_position = 'Software Engineer';",
+        "SELECT contacts.* FROM contacts INNER JOIN companies ON contacts.company_id = companies.id WHERE companies.name = 'Tech Innovators' AND contacts.job_position = 'Software Engineer';",
+        "SELECT first_name, last_name FROM contacts WHERE job_position = 'Software Engineer' AND company_id IN (SELECT id FROM companies WHERE name = 'Tech Innovators');"
+      ]
+    },
+    "id": "TEST-019"
+  },
+  {
+    "complexity": "medium",
+    "question": "Lista las publicaciones que han sido publicadas y tienen más de 500 visitas, ordenadas de forma descendente por la cantidad de visitas.",
+    "gold_standards": {
+      "expected_model": "Post",
+      "expected_relations": [],
+      "expected_orms": [
+        "Post::where('published', true)->where('view_count', '>', 500)->orderByDesc('view_count')->get()",
+        "Post::query()->wherePublished(true)->where('view_count', '>', 500)->latest('view_count')->get()",
+        "Post::whereTrue('published')->where('view_count', '>', 500)->orderBy('view_count', 'DESC')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM posts WHERE published = 1 AND view_count > 500 ORDER BY view_count DESC;",
+        "SELECT P.title, P.view_count FROM posts P WHERE P.published = TRUE AND P.view_count > 500 ORDER BY P.view_count DESC;",
+        "SELECT posts.* FROM posts WHERE posts.published = 1 AND posts.view_count > 500 ORDER BY posts.view_count DESC;"
+      ]
+    },
+    "id": "TEST-020"
+  },
+  {
+    "complexity": "medium",
+    "question": "Obtén los diarios cuyo nombre contenga 'Viajes' o su descripción contenga 'Aventuras', y que estén en un vault llamado 'Mis Recuerdos'.",
+    "gold_standards": {
+      "expected_model": "Journal",
+      "expected_relations": [
+        "vault"
+      ],
+      "expected_orms": [
+        "Journal::where(function ($query) { $query->where('name', 'like', '%Viajes%')->orWhere('description', 'like', '%Aventuras%'); })->whereHas('vault', function ($query) { $query->where('name', 'Mis Recuerdos'); })->get()",
+        "Journal::query()->where(fn($q) => $q->where('name', 'like', '%Viajes%')->orWhere('description', 'like', '%Aventuras%'))->whereHas('vault', fn($q) => $q->whereName('Mis Recuerdos'))->get()",
+        "Journal::with('vault')->where('name', 'like', '%Viajes%')->orWhere('description', 'like', '%Aventuras%')->whereHas('vault', fn($q) => $q->where('name', '=', 'Mis Recuerdos'))->get()"
+      ],
+      "expected_sqls": [
+        "SELECT J.* FROM journals J JOIN vaults V ON J.vault_id = V.id WHERE (J.name LIKE '%Viajes%' OR J.description LIKE '%Aventuras%') AND V.name = 'Mis Recuerdos';",
+        "SELECT journals.* FROM journals INNER JOIN vaults ON journals.vault_id = vaults.id WHERE (journals.name LIKE '%Viajes%' OR journals.description LIKE '%Aventuras%') AND vaults.name = 'Mis Recuerdos';",
+        "SELECT name, description FROM journals WHERE (name LIKE '%Viajes%' OR description LIKE '%Aventuras%') AND vault_id IN (SELECT id FROM vaults WHERE name = 'Mis Recuerdos');"
+      ]
+    },
+    "id": "TEST-021"
+  },
+  {
+    "complexity": "medium",
+    "question": "Busca archivos de tipo 'document' y cuyo 'mime_type' sea 'application/pdf', ordenados por su nombre de archivo de forma ascendente.",
+    "gold_standards": {
+      "expected_model": "File",
+      "expected_relations": [],
+      "expected_orms": [
+        "File::where('type', 'document')->where('mime_type', 'application/pdf')->orderBy('name')->get()",
+        "File::query()->whereType('document')->whereMimeType('application/pdf')->oldest('name')->get()",
+        "File::where('type', '=', 'document')->whereRaw(\"mime_type = 'application/pdf'\")->orderBy('name', 'ASC')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM files WHERE type = 'document' AND mime_type = 'application/pdf' ORDER BY name ASC;",
+        "SELECT F.name, F.mime_type, F.size FROM files F WHERE F.type = 'document' AND F.mime_type = 'application/pdf' ORDER BY F.name ASC;",
+        "SELECT name, mime_type FROM files WHERE type = 'document' AND mime_type = 'application/pdf' ORDER BY name;"
+      ]
+    },
+    "id": "TEST-022"
+  },
+  {
+    "complexity": "medium",
+    "question": "Recupera préstamos que ya han sido liquidados ('settled = true') y cuyo monto prestado ('amount_lent') es menor a 1000, incluyendo la información de la moneda.",
+    "gold_standards": {
+      "expected_model": "Loan",
+      "expected_relations": [
+        "currency"
+      ],
+      "expected_orms": [
+        "Loan::with('currency')->where('settled', true)->where('amount_lent', '<', 1000)->get()",
+        "Loan::query()->whereSettled(true)->whereAmountLent('<', 1000)->with('currency')->get()",
+        "Loan::whereTrue('settled')->where('amount_lent', '<', 1000)->with(['currency'])->get()"
+      ],
+      "expected_sqls": [
+        "SELECT L.*, C.code AS currency_code FROM loans L JOIN currencies C ON L.currency_id = C.id WHERE L.settled = 1 AND L.amount_lent < 1000;",
+        "SELECT loans.*, currencies.code FROM loans INNER JOIN currencies ON loans.currency_id = currencies.id WHERE loans.settled = TRUE AND loans.amount_lent < 1000;",
+        "SELECT name, amount_lent FROM loans WHERE settled = 1 AND amount_lent < 1000;"
+      ]
+    },
+    "id": "TEST-023"
+  },
+  {
+    "complexity": "medium",
+    "question": "Enlista las direcciones en la provincia de 'California' y el país 'USA', cargando el tipo de dirección asociado.",
+    "gold_standards": {
+      "expected_model": "Address",
+      "expected_relations": [
+        "addressType"
+      ],
+      "expected_orms": [
+        "Address::with('addressType')->where('province', 'California')->where('country', 'USA')->get()",
+        "Address::query()->whereProvince('California')->whereCountry('USA')->with('addressType')->get()",
+        "Address::where(['province' => 'California', 'country' => 'USA'])->with('addressType')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT A.*, AT.name AS address_type_name FROM addresses A JOIN address_types AT ON A.address_type_id = AT.id WHERE A.province = 'California' AND A.country = 'USA';",
+        "SELECT addresses.*, address_types.name AS address_type FROM addresses INNER JOIN address_types ON addresses.address_type_id = address_types.id WHERE addresses.province = 'California' AND addresses.country = 'USA';",
+        "SELECT line_1, city, province, country FROM addresses WHERE province = 'California' AND country = 'USA';"
+      ]
+    },
+    "id": "TEST-024"
+  },
+  {
+    "complexity": "medium",
+    "question": "Obtén empresas de tipo 'Manufacturing' cuyo nombre contiene la palabra 'Global', ordenadas por su nombre de forma ascendente.",
+    "gold_standards": {
+      "expected_model": "Company",
+      "expected_relations": [],
+      "expected_orms": [
+        "Company::where('type', 'Manufacturing')->where('name', 'like', '%Global%')->orderBy('name')->get()",
+        "Company::query()->whereType('Manufacturing')->where('name', 'like', '%Global%')->orderBy('name', 'ASC')->get()",
+        "Company::where('type', '=', 'Manufacturing')->whereRaw(\"name LIKE '%Global%'\")->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM companies WHERE type = 'Manufacturing' AND name LIKE '%Global%' ORDER BY name ASC;",
+        "SELECT C.name, C.type FROM companies C WHERE C.type = 'Manufacturing' AND C.name LIKE '%Global%' ORDER BY C.name;",
+        "SELECT companies.* FROM companies WHERE companies.type = 'Manufacturing' AND companies.name LIKE '%Global%' ORDER BY companies.name;"
+      ]
+    },
+    "id": "TEST-025"
+  },
+  {
+    "complexity": "medium",
+    "question": "Encuentra grupos cuyo nombre comience con 'Equipo' y que pertenezcan a un tipo de grupo con la etiqueta 'Colaboración'.",
+    "gold_standards": {
+      "expected_model": "Group",
+      "expected_relations": [
+        "groupType"
+      ],
+      "expected_orms": [
+        "Group::where('name', 'like', 'Equipo%')->whereHas('groupType', function ($query) { $query->where('label', 'Colaboración'); })->get()",
+        "Group::query()->whereName('like', 'Equipo%')->whereHas('groupType', fn($q) => $q->whereLabel('Colaboración'))->get()",
+        "Group::with('groupType')->where('name', 'like', 'Equipo%')->whereHas('groupType', fn($q) => $q->where('label', '=', 'Colaboración'))->get()"
+      ],
+      "expected_sqls": [
+        "SELECT G.* FROM groups G JOIN group_types GT ON G.group_type_id = GT.id WHERE G.name LIKE 'Equipo%' AND GT.label = 'Colaboración';",
+        "SELECT groups.* FROM groups INNER JOIN group_types ON groups.group_type_id = group_types.id WHERE groups.name LIKE 'Equipo%' AND group_types.label = 'Colaboración';",
+        "SELECT name FROM groups WHERE name LIKE 'Equipo%' AND group_type_id IN (SELECT id FROM group_types WHERE label = 'Colaboración');"
+      ]
+    },
+    "id": "TEST-026"
+  },
+  {
+    "complexity": "medium",
+    "question": "Busca llamadas que fueron contestadas ('answered = true'), de tipo 'Incoming', realizadas en el año 2024, incluyendo la razón de la llamada.",
+    "gold_standards": {
+      "expected_model": "Call",
+      "expected_relations": [
+        "callReason"
+      ],
+      "expected_orms": [
+        "Call::with('callReason')->where('answered', true)->where('type', 'Incoming')->whereYear('called_at', 2024)->get()",
+        "Call::query()->whereAnswered(true)->whereType('Incoming')->where('called_at', 'like', '2024-%')->with('callReason')->get()",
+        "Call::whereTrue('answered')->where('type', 'Incoming')->whereBetween('called_at', ['2024-01-01 00:00:00', '2024-12-31 23:59:59'])->with(['callReason'])->get()"
+      ],
+      "expected_sqls": [
+        "SELECT C.*, CR.label AS reason_label FROM calls C JOIN call_reasons CR ON C.call_reason_id = CR.id WHERE C.answered = 1 AND C.type = 'Incoming' AND STRFTIME('%Y', C.called_at) = '2024';",
+        "SELECT calls.*, call_reasons.label FROM calls INNER JOIN call_reasons ON calls.call_reason_id = call_reasons.id WHERE calls.answered = TRUE AND calls.type = 'Incoming' AND YEAR(calls.called_at) = 2024;",
+        "SELECT called_at, duration FROM calls WHERE answered = 1 AND type = 'Incoming' AND called_at BETWEEN '2024-01-01 00:00:00' AND '2024-12-31 23:59:59';"
+      ]
+    },
+    "id": "TEST-027"
+  },
+  {
+    "complexity": "medium",
+    "question": "Lista eventos de vida que sucedieron en el año 2023 y tuvieron costos entre 50 y 500, incluyendo el tipo de evento de vida.",
+    "gold_standards": {
+      "expected_model": "LifeEvent",
+      "expected_relations": [
+        "lifeEventType"
+      ],
+      "expected_orms": [
+        "LifeEvent::with('lifeEventType')->whereYear('happened_at', 2023)->whereBetween('costs', [50, 500])->get()",
+        "LifeEvent::query()->where('happened_at', 'like', '2023%')->whereBetween('costs', [50, 500])->with('lifeEventType')->get()",
+        "LifeEvent::whereBetween('happened_at', ['2023-01-01', '2023-12-31'])->where('costs', '>=', 50)->where('costs', '<=', 500)->with(['lifeEventType'])->get()"
+      ],
+      "expected_sqls": [
+        "SELECT LE.*, LET.label AS event_type_label FROM life_events LE JOIN life_event_types LET ON LE.life_event_type_id = LET.id WHERE STRFTIME('%Y', LE.happened_at) = '2023' AND LE.costs BETWEEN 50 AND 500;",
+        "SELECT life_events.*, life_event_types.label FROM life_events INNER JOIN life_event_types ON life_events.life_event_type_id = life_event_types.id WHERE YEAR(life_events.happened_at) = 2023 AND life_events.costs BETWEEN 50 AND 500;",
+        "SELECT happened_at, costs FROM life_events WHERE happened_at >= '2023-01-01' AND happened_at <= '2023-12-31' AND costs >= 50 AND costs <= 500;"
+      ]
+    },
+    "id": "TEST-028"
+  },
+  {
+    "complexity": "medium",
+    "question": "Encuentra eventos de seguimiento de ánimo que tienen una nota asociada y donde el número de horas dormidas fue exactamente 8.",
+    "gold_standards": {
+      "expected_model": "MoodTrackingEvent",
+      "expected_relations": [],
+      "expected_orms": [
+        "MoodTrackingEvent::whereNotNull('note')->where('number_of_hours_slept', 8)->get()",
+        "MoodTrackingEvent::query()->whereRaw('note IS NOT NULL')->whereNumberOfHoursSlept(8)->get()",
+        "MoodTrackingEvent::where('note', '!=', null)->where('number_of_hours_slept', '=', 8)->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM mood_tracking_events WHERE note IS NOT NULL AND number_of_hours_slept = 8;",
+        "SELECT MTE.rated_at, MTE.note, MTE.number_of_hours_slept FROM mood_tracking_events MTE WHERE MTE.note IS NOT NULL AND MTE.number_of_hours_slept = 8;",
+        "SELECT rated_at, note, number_of_hours_slept FROM mood_tracking_events WHERE note IS NOT NULL AND number_of_hours_slept = 8;"
+      ]
+    },
+    "id": "TEST-029"
+  },
+  {
+    "complexity": "medium",
+    "question": "Obtén las fechas importantes de contactos que tienen la etiqueta 'Aniversario' y ocurren en el mes de febrero (mes 2), incluyendo el tipo de fecha importante.",
+    "gold_standards": {
+      "expected_model": "ContactImportantDate",
+      "expected_relations": [
+        "contactImportantDateType"
+      ],
+      "expected_orms": [
+        "ContactImportantDate::with('contactImportantDateType')->where('label', 'Aniversario')->where('month', 2)->get()",
+        "ContactImportantDate::query()->whereLabel('Aniversario')->whereMonth(2)->with('contactImportantDateType')->get()",
+        "ContactImportantDate::where(['label' => 'Aniversario', 'month' => 2])->with('contactImportantDateType')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT CID.*, CIDT.label AS date_type_label FROM contact_important_dates CID JOIN contact_important_date_types CIDT ON CID.contact_important_date_type_id = CIDT.id WHERE CID.label = 'Aniversario' AND CID.month = 2;",
+        "SELECT contact_important_dates.*, contact_important_date_types.label FROM contact_important_dates INNER JOIN contact_important_date_types ON contact_important_dates.contact_important_date_type_id = contact_important_date_types.id WHERE contact_important_dates.label = 'Aniversario' AND contact_important_dates.month = 2;",
+        "SELECT label, day, month FROM contact_important_dates WHERE label = 'Aniversario' AND month = 2;"
+      ]
+    },
+    "id": "TEST-030"
+  },
+  {
+    "complexity": "medium",
+    "question": "Lista los recordatorios de contactos que son de tipo 'Event' y tienen una frecuencia de '7' (semanal), incluyendo los canales de notificación asociados.",
+    "gold_standards": {
+      "expected_model": "ContactReminder",
+      "expected_relations": [
+        "userNotificationChannels"
+      ],
+      "expected_orms": [
+        "ContactReminder::with('userNotificationChannels')->where('type', 'Event')->where('frequency_number', 7)->get()",
+        "ContactReminder::query()->whereType('Event')->whereFrequencyNumber(7)->with('userNotificationChannels')->get()",
+        "ContactReminder::where(['type' => 'Event', 'frequency_number' => 7])->with(['userNotificationChannels'])->get()"
+      ],
+      "expected_sqls": [
+        "SELECT CR.* FROM contact_reminders CR WHERE CR.type = 'Event' AND CR.frequency_number = 7;",
+        "SELECT label, type, frequency_number FROM contact_reminders WHERE type = 'Event' AND frequency_number = 7;",
+        "SELECT contact_reminders.* FROM contact_reminders WHERE contact_reminders.type = 'Event' AND contact_reminders.frequency_number = 7;"
+      ]
+    },
+    "id": "TEST-031"
+  },
+  {
+    "complexity": "medium",
+    "question": "Obtén los canales de notificación de usuario que están activos, verificados y son de tipo 'SMS'.",
+    "gold_standards": {
+      "expected_model": "UserNotificationChannel",
+      "expected_relations": [],
+      "expected_orms": [
+        "UserNotificationChannel::where('active', true)->whereNotNull('verified_at')->where('type', 'SMS')->get()",
+        "UserNotificationChannel::query()->whereActive(true)->where('verified_at', '!=', null)->whereType('SMS')->get()",
+        "UserNotificationChannel::whereTrue('active')->whereNotNull('verified_at')->where('type', '=', 'SMS')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM user_notification_channels WHERE active = 1 AND verified_at IS NOT NULL AND type = 'SMS';",
+        "SELECT UNC.label, UNC.content FROM user_notification_channels UNC WHERE UNC.active = TRUE AND UNC.verified_at IS NOT NULL AND UNC.type = 'SMS';",
+        "SELECT user_notification_channels.* FROM user_notification_channels WHERE user_notification_channels.active = 1 AND user_notification_channels.verified_at IS NOT NULL AND user_notification_channels.type = 'SMS';"
+      ]
+    },
+    "id": "TEST-032"
+  },
+  {
+    "complexity": "medium",
+    "question": "Encuentra bóvedas de tipo 'Shared' que tienen el nombre 'Proyecto Alpha' y donde la pestaña de 'files' (`show_files_tab`) está habilitada.",
+    "gold_standards": {
+      "expected_model": "Vault",
+      "expected_relations": [],
+      "expected_orms": [
+        "Vault::where('type', 'Shared')->where('name', 'Proyecto Alpha')->where('show_files_tab', true)->get()",
+        "Vault::query()->whereType('Shared')->whereName('Proyecto Alpha')->whereShowFilesTab(true)->get()",
+        "Vault::where(['type' => 'Shared', 'name' => 'Proyecto Alpha', 'show_files_tab' => true])->get()"
+      ],
+      "expected_sqls": [
+        "SELECT * FROM vaults WHERE type = 'Shared' AND name = 'Proyecto Alpha' AND show_files_tab = 1;",
+        "SELECT V.name, V.description FROM vaults V WHERE V.type = 'Shared' AND V.name = 'Proyecto Alpha' AND V.show_files_tab = TRUE;",
+        "SELECT vaults.* FROM vaults WHERE vaults.type = 'Shared' AND vaults.name = 'Proyecto Alpha' AND vaults.show_files_tab = 1;"
+      ]
+    },
+    "id": "TEST-033"
+  },
+  {
+    "complexity": "medium",
+    "question": "Busca etiquetas cuyo nombre comience con 'Personal' y que estén asociadas a al menos una publicación.",
+    "gold_standards": {
+      "expected_model": "Tag",
+      "expected_relations": [
+        "posts"
+      ],
+      "expected_orms": [
+        "Tag::where('name', 'like', 'Personal%')->has('posts')->get()",
+        "Tag::query()->whereName('like', 'Personal%')->whereHas('posts')->get()",
+        "Tag::with('posts')->where('name', 'like', 'Personal%')->has('posts')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT T.* FROM tags T WHERE T.name LIKE 'Personal%' AND EXISTS (SELECT 1 FROM post_tag PT WHERE PT.tag_id = T.id LIMIT 1);",
+        "SELECT tags.* FROM tags WHERE tags.name LIKE 'Personal%' AND tags.id IN (SELECT DISTINCT tag_id FROM post_tag);",
+        "SELECT name, slug FROM tags WHERE name LIKE 'Personal%' AND EXISTS (SELECT 1 FROM posts WHERE posts.id IN (SELECT post_id FROM post_tag WHERE tag_id = tags.id));"
+      ]
+    },
+    "id": "TEST-034"
+  },
+  {
+    "complexity": "complex",
+    "question": "Encuentra los depósitos (vaults) que contienen contactos con al menos una meta 'activa' que ha tenido streaks registrados y que además tienen parámetros de seguimiento de estado de ánimo (mood tracking parameters) con un color hexadecimal específico, ordenados por el nombre del depósito.",
+    "gold_standards": {
+      "expected_model": "Vault",
+      "expected_relations": [
+        "contacts.goals.streaks",
+        "moodTrackingParameters"
+      ],
+      "expected_orms": [
+        "Vault::whereHas('contacts.goals.streaks', function ($query) { $query->where('active', true); })->whereHas('moodTrackingParameters', function ($query) { $query->where('hex_color', '#FF0000'); })->orderBy('name')->get()",
+        "Vault::query()->whereHas('contacts.goals', function ($query) { $query->where('active', true)->has('streaks'); })->whereHas('moodTrackingParameters', fn ($q) => $q->where('hex_color', '#FF0000'))->orderBy('name')->get()",
+        "Vault::orderBy('name')->whereHas('contacts', function ($query) { $query->whereHas('goals', function ($q) { $q->where('active', true)->has('streaks'); }); })->whereHas('moodTrackingParameters', fn ($q) => $q->where('hex_color', '#FF0000'))->get()"
+      ],
+      "expected_sqls": [
+        "SELECT DISTINCT v.* FROM vaults v JOIN contacts c ON v.id = c.vault_id JOIN goals g ON c.id = g.contact_id JOIN streaks s ON g.id = s.goal_id JOIN mood_tracking_parameters mtp ON v.id = mtp.vault_id WHERE g.active = 1 AND mtp.hex_color = '#FF0000' ORDER BY v.name;",
+        "SELECT v.* FROM vaults v WHERE EXISTS (SELECT 1 FROM contacts c JOIN goals g ON c.id = g.contact_id JOIN streaks s ON g.id = s.goal_id WHERE c.vault_id = v.id AND g.active = 1) AND EXISTS (SELECT 1 FROM mood_tracking_parameters mtp WHERE mtp.vault_id = v.id AND mtp.hex_color = '#FF0000') ORDER BY v.name;",
+        "SELECT v.id, v.name, v.description FROM vaults v JOIN contacts c ON v.id = c.vault_id JOIN goals g ON c.id = g.contact_id JOIN streaks s ON g.id = s.goal_id JOIN mood_tracking_parameters mtp ON v.id = mtp.vault_id WHERE g.active = TRUE AND mtp.hex_color = '#FF0000' GROUP BY v.id, v.name, v.description ORDER BY v.name;"
+      ]
+    },
+    "id": "TEST-035"
+  },
+  {
+    "complexity": "complex",
+    "question": "Lista los posts que están asociados a un tag con un slug particular y que, además, han sido publicados por contactos que pertenecen a un grupo con un nombre específico, mostrando solo los posts publicados y ordenados por fecha de publicación.",
+    "gold_standards": {
+      "expected_model": "Post",
+      "expected_relations": [
+        "tags",
+        "contacts.groups"
+      ],
+      "expected_orms": [
+        "Post::where('published', true)->whereHas('tags', function ($query) { $query->where('slug', 'marketing-digital'); })->whereHas('contacts.groups', function ($query) { $query->where('name', 'Equipo Creativo'); })->orderBy('written_at', 'desc')->get()",
+        "Post::query()->wherePublished(true)->whereHas('tags', fn ($q) => $q->where('slug', 'marketing-digital'))->whereHas('contacts', fn ($q) => $q->whereHas('groups', fn ($g) => $g->where('name', 'Equipo Creativo')))->orderBy('written_at', 'desc')->get()",
+        "Post::orderBy('written_at', 'desc')->where('published', true)->whereHas('tags', fn ($q) => $q->where('slug', 'marketing-digital'))->whereHas('contacts.groups', fn ($q) => $q->where('name', 'Equipo Creativo'))->get()"
+      ],
+      "expected_sqls": [
+        "SELECT DISTINCT p.* FROM posts p JOIN post_tag pt ON p.id = pt.post_id JOIN tags t ON pt.tag_id = t.id JOIN contact_post cp ON p.id = cp.post_id JOIN contacts c ON cp.contact_id = c.id JOIN contact_group cg ON c.id = cg.contact_id JOIN groups g ON cg.group_id = g.id WHERE p.published = 1 AND t.slug = 'marketing-digital' AND g.name = 'Equipo Creativo' ORDER BY p.written_at DESC;",
+        "SELECT p.* FROM posts p WHERE p.published = TRUE AND EXISTS (SELECT 1 FROM post_tag pt JOIN tags t ON pt.tag_id = t.id WHERE pt.post_id = p.id AND t.slug = 'marketing-digital') AND EXISTS (SELECT 1 FROM contact_post cp JOIN contacts c ON cp.contact_id = c.id JOIN contact_group cg ON c.id = cg.contact_id JOIN groups g ON cg.group_id = g.id WHERE cp.post_id = p.id AND g.name = 'Equipo Creativo') ORDER BY p.written_at DESC;",
+        "SELECT p.id, p.title, p.written_at FROM posts p INNER JOIN post_tag p_t ON p.id = p_t.post_id INNER JOIN tags t ON p_t.tag_id = t.id INNER JOIN contact_post c_p ON p.id = c_p.post_id INNER JOIN contacts c ON c_p.contact_id = c.id INNER JOIN contact_group c_g ON c.id = c_g.contact_id INNER JOIN groups gr ON c_g.group_id = gr.id WHERE p.published = 1 AND t.slug = 'marketing-digital' AND gr.name = 'Equipo Creativo' ORDER BY p.written_at DESC;"
+      ]
+    },
+    "id": "TEST-036"
+  },
+  {
+    "complexity": "complex",
+    "question": "Identifica las empresas que tienen más de diez contactos, donde cada uno de esos contactos tiene al menos una dirección de tipo 'oficina' ubicada en la ciudad de 'Madrid', ordenadas por el nombre de la empresa.",
+    "gold_standards": {
+      "expected_model": "Company",
+      "expected_relations": [
+        "contacts.addresses.addressType"
+      ],
+      "expected_orms": [
+        "Company::has('contacts', '>', 10)->whereHas('contacts.addresses.addressType', function ($query) { $query->where('name', 'Oficina')->where('city', 'Madrid'); })->orderBy('name')->get()",
+        "Company::query()->withCount(['contacts' => function ($query) { $query->whereHas('addresses.addressType', fn ($q) => $q->where('name', 'Oficina')->where('city', 'Madrid')); }])->having('contacts_count', '>', 10)->orderBy('name')->get()",
+        "Company::orderBy('name')->whereHas('contacts', function ($query) { $query->whereHas('addresses', function ($q) { $q->where('city', 'Madrid')->whereHas('addressType', fn ($at) => $at->where('name', 'Oficina')); }); }, '>', 10)->get()"
+      ],
+      "expected_sqls": [
+        "SELECT DISTINCT c.* FROM companies c JOIN contacts co ON c.id = co.company_id JOIN addresses a ON co.id = a.contact_id JOIN address_types at ON a.address_type_id = at.id WHERE at.name = 'Oficina' AND a.city = 'Madrid' GROUP BY c.id HAVING COUNT(DISTINCT co.id) > 10 ORDER BY c.name;",
+        "SELECT c.* FROM companies c WHERE (SELECT COUNT(co.id) FROM contacts co JOIN addresses a ON co.id = a.contact_id JOIN address_types at ON a.address_type_id = at.id WHERE co.company_id = c.id AND at.name = 'Oficina' AND a.city = 'Madrid') > 10 ORDER BY c.name;",
+        "SELECT comp.id, comp.name FROM companies comp WHERE (SELECT COUNT(DISTINCT cont.id) FROM contacts cont JOIN addresses addr ON cont.id = addr.contact_id JOIN address_types atype ON addr.address_type_id = atype.id WHERE cont.company_id = comp.id AND atype.name = 'Oficina' AND addr.city = 'Madrid') > 10 ORDER BY comp.name;"
+      ]
+    },
+    "id": "TEST-037"
+  },
+  {
+    "complexity": "complex",
+    "question": "Busca los eventos de vida que involucraron a un participante con un nombre y apellido específicos, que ocurrieron entre dos fechas determinadas y que están asociados a un evento de línea de tiempo (timeline event) que está colapsado dentro de un depósito (vault) con un nombre concreto.",
+    "gold_standards": {
+      "expected_model": "LifeEvent",
+      "expected_relations": [
+        "participants",
+        "timelineEvent.vault"
+      ],
+      "expected_orms": [
+        "LifeEvent::whereBetween('happened_at', ['2023-01-01', '2023-12-31'])->whereHas('participants', function ($query) { $query->where('first_name', 'Ana')->where('last_name', 'García'); })->whereHas('timelineEvent.vault', function ($query) { $query->where('collapsed', true)->where('name', 'Archivos Familiares'); })->get()",
+        "LifeEvent::query()->where('happened_at', '>=', '2023-01-01')->where('happened_at', '<=', '2023-12-31')->whereHas('participants', fn ($q) => $q->whereFirstName('Ana')->whereLastName('García'))->whereHas('timelineEvent', fn ($q) => $q->where('collapsed', true)->whereHas('vault', fn ($v) => $v->where('name', 'Archivos Familiares')))->get()",
+        "LifeEvent::whereHas('participants', function ($query) { $query->where('first_name', 'Ana')->where('last_name', 'García'); })->whereHas('timelineEvent', function ($query) { $query->where('collapsed', true)->whereHas('vault', fn ($q) => $q->where('name', 'Archivos Familiares')); })->whereHappenedAtBetween('2023-01-01', '2023-12-31')->get()"
+      ],
+      "expected_sqls": [
+        "SELECT DISTINCT le.* FROM life_events le JOIN life_event_contact lec ON le.id = lec.life_event_id JOIN contacts c ON lec.contact_id = c.id JOIN timeline_events te ON le.timeline_event_id = te.id JOIN vaults v ON te.vault_id = v.id WHERE c.first_name = 'Ana' AND c.last_name = 'García' AND le.happened_at BETWEEN '2023-01-01' AND '2023-12-31' AND te.collapsed = 1 AND v.name = 'Archivos Familiares';",
+        "SELECT le.* FROM life_events le WHERE le.happened_at BETWEEN '2023-01-01' AND '2023-12-31' AND EXISTS (SELECT 1 FROM life_event_contact lec JOIN contacts c ON lec.contact_id = c.id WHERE lec.life_event_id = le.id AND c.first_name = 'Ana' AND c.last_name = 'García') AND EXISTS (SELECT 1 FROM timeline_events te JOIN vaults v ON te.vault_id = v.id WHERE le.timeline_event_id = te.id AND te.collapsed = 1 AND v.name = 'Archivos Familiares');",
+        "SELECT le.id, le.label, le.happened_at FROM life_events le JOIN life_event_contact lec ON le.id = lec.life_event_id JOIN contacts cont ON lec.contact_id = cont.id JOIN timeline_events te ON le.timeline_event_id = te.id JOIN vaults va ON te.vault_id = va.id WHERE cont.first_name = 'Ana' AND cont.last_name = 'García' AND le.happened_at >= '2023-01-01' AND le.happened_at <= '2023-12-31' AND te.collapsed = TRUE AND va.name = 'Archivos Familiares';"
+      ]
+    },
+    "id": "TEST-038"
+  },
+  {
+    "complexity": "complex",
+    "question": "Obtén los usuarios que han enviado notificaciones a través de un canal de tipo 'email' con una etiqueta particular, y de los cuales al menos una de sus notificaciones enviadas registró un error.",
+    "gold_standards": {
+      "expected_model": "User",
+      "expected_relations": [
+        "notificationChannels.userNotificationSent"
+      ],
+      "expected_orms": [
+        "User::whereHas('notificationChannels', function ($query) { $query->where('type', 'email')->where('label', 'Alertas Críticas')->whereHas('userNotificationSent', fn ($q) => $q->whereNotNull('error')); })->get()",
+        "User::query()->whereHas('notificationChannels', fn ($q) => $q->whereType('email')->whereLabel('Alertas Críticas')->whereHas('userNotificationSent', fn ($s) => $s->where('error', true)))->get()",
+        "User::whereHas('notificationChannels.userNotificationSent', function ($query) { $query->where('user_notification_channels.type', 'email')->where('user_notification_channels.label', 'Alertas Críticas')->where('user_notification_sent.error', true); })->get()"
+      ],
+      "expected_sqls": [
+        "SELECT DISTINCT u.* FROM users u JOIN user_notification_channels unc ON u.id = unc.user_id JOIN user_notification_sent uns ON unc.id = uns.user_notification_channel_id WHERE unc.type = 'email' AND unc.label = 'Alertas Críticas' AND uns.error = 1;",
+        "SELECT u.* FROM users u WHERE EXISTS (SELECT 1 FROM user_notification_channels unc JOIN user_notification_sent uns ON unc.id = uns.user_notification_channel_id WHERE unc.user_id = u.id AND unc.type = 'email' AND unc.label = 'Alertas Críticas' AND uns.error = 1);",
+        "SELECT u.id, u.first_name, u.email FROM users u INNER JOIN user_notification_channels unc ON u.id = unc.user_id INNER JOIN user_notification_sent uns ON unc.id = uns.user_notification_channel_id WHERE unc.type = 'email' AND unc.label = 'Alertas Críticas' AND uns.error = TRUE GROUP BY u.id, u.first_name, u.email;"
+      ]
+    },
+    "id": "TEST-039"
+  },
+  {
+    "complexity": "complex",
+    "question": "Enumera los diarios (journals) que contienen posts con al menos una sección cuyo contenido incluye la frase 'proyecto secreto' y que, además, tienen una métrica de diario con la etiqueta 'productividad semanal'.",
+    "gold_standards": {
+      "expected_model": "Journal",
+      "expected_relations": [
+        "posts.postSections",
+        "journalMetrics"
+      ],
+      "expected_orms": [
+        "Journal::whereHas('posts.postSections', function ($query) { $query->where('content', 'LIKE', '%proyecto secreto%'); })->whereHas('journalMetrics', function ($query) { $query->where('label', 'productividad semanal'); })->get()",
+        "Journal::query()->whereHas('posts', fn ($q) => $q->whereHas('postSections', fn ($ps) => $ps->where('content', 'LIKE', '%proyecto secreto%')))->whereHas('journalMetrics', fn ($jm) => $jm->where('label', 'productividad semanal'))->get()",
+        "Journal::whereHas('posts.postSections', fn ($q) => $q->where('content', 'LIKE', '%proyecto secreto%'))->whereHas('journalMetrics', fn ($q) => $q->whereLabel('productividad semanal'))->get()"
+      ],
+      "expected_sqls": [
+        "SELECT DISTINCT j.* FROM journals j JOIN posts p ON j.id = p.journal_id JOIN post_sections ps ON p.id = ps.post_id JOIN journal_metrics jm ON j.id = jm.journal_id WHERE ps.content LIKE '%proyecto secreto%' AND jm.label = 'productividad semanal';",
+        "SELECT j.* FROM journals j WHERE EXISTS (SELECT 1 FROM posts p JOIN post_sections ps ON p.id = ps.post_id WHERE p.journal_id = j.id AND ps.content LIKE '%proyecto secreto%') AND EXISTS (SELECT 1 FROM journal_metrics jm WHERE jm.journal_id = j.id AND jm.label = 'productividad semanal');",
+        "SELECT j.id, j.name FROM journals j INNER JOIN posts p ON j.id = p.journal_id INNER JOIN post_sections ps ON p.id = ps.post_id INNER JOIN journal_metrics jm ON j.id = jm.journal_id WHERE ps.content LIKE '%proyecto secreto%' AND jm.label = 'productividad semanal' GROUP BY j.id, j.name;"
+      ]
+    },
+    "id": "TEST-040"
+  },
+  {
+    "complexity": "complex",
+    "question": "Encuentra los contactos que son de género 'Masculino', tienen un apodo que empieza por 'Super', trabajan en una empresa de tipo 'Tecnología', y son prestamistas (loaners) en un préstamo que aún no ha sido liquidado.",
+    "gold_standards": {
+      "expected_model": "Contact",
+      "expected_relations": [
+        "gender",
+        "company",
+        "loansAsLoaner"
+      ],
+      "expected_orms": [
+        "Contact::whereHas('gender', function ($query) { $query->where('name', 'Masculino'); })->where('nickname', 'LIKE', 'Super%')->whereHas('company', function ($query) { $query->where('type', 'Tecnología'); })->whereHas('loansAsLoaner', function ($query) { $query->where('settled', false); })->get()",
+        "Contact::query()->whereHas('gender', fn ($q) => $q->whereName('Masculino'))->whereNickname('LIKE', 'Super%')->whereHas('company', fn ($q) => $q->whereType('Tecnología'))->whereHas('loansAsLoaner', fn ($q) => $q->whereSettled(false))->get()",
+        "Contact::whereHas('gender', fn ($q) => $q->where('name', 'Masculino'))->where('nickname', 'LIKE', 'Super%')->whereHas('company', fn ($q) => $q->where('type', 'Tecnología'))->whereHas('loansAsLoaner', fn ($q) => $q->where('settled', 0))->get()"
+      ],
+      "expected_sqls": [
+        "SELECT DISTINCT c.* FROM contacts c JOIN genders g ON c.gender_id = g.id JOIN companies co ON c.company_id = co.id JOIN loan_contact lc ON c.id = lc.contact_id JOIN loans l ON lc.loan_id = l.id WHERE g.name = 'Masculino' AND c.nickname LIKE 'Super%' AND co.type = 'Tecnología' AND l.settled = 0 AND lc.type = 'loaner';",
+        "SELECT c.* FROM contacts c WHERE EXISTS (SELECT 1 FROM genders g WHERE g.id = c.gender_id AND g.name = 'Masculino') AND c.nickname LIKE 'Super%' AND EXISTS (SELECT 1 FROM companies co WHERE co.id = c.company_id AND co.type = 'Tecnología') AND EXISTS (SELECT 1 FROM loan_contact lc JOIN loans l ON lc.loan_id = l.id WHERE lc.contact_id = c.id AND l.settled = 0 AND lc.type = 'loaner');",
+        "SELECT c.id, c.first_name, c.nickname FROM contacts c INNER JOIN genders g ON c.gender_id = g.id INNER JOIN companies comp ON c.company_id = comp.id INNER JOIN loan_contact lc ON c.id = lc.contact_id INNER JOIN loans l ON lc.loan_id = l.id WHERE g.name = 'Masculino' AND c.nickname LIKE 'Super%' AND comp.type = 'Tecnología' AND l.settled = FALSE AND lc.type = 'loaner';"
+      ]
+    },
+    "id": "TEST-041"
+  },
+  {
+    "complexity": "complex",
+    "question": "Para cada país, determina cuáles tienen más de cinco direcciones de tipo 'Hogar' registradas en depósitos (vaults) cuyos nombres incluyen la palabra 'personal', mostrando solo el nombre del país y el conteo de estas direcciones.",
+    "gold_standards": {
+      "expected_model": "Address",
+      "expected_relations": [
+        "addressType",
+        "vault"
+      ],
+      "expected_orms": [
+        "Address::select('country')->selectRaw('COUNT(*) as total_addresses_hogar')->whereHas('addressType', function ($query) { $query->where('name', 'Hogar'); })->whereHas('vault', function ($query) { $query->where('name', 'LIKE', '%personal%'); })->groupBy('country')->having('total_addresses_hogar', '>', 5)->get()",
+        "Address::query()->whereHas('addressType', fn ($q) => $q->whereName('Hogar'))->whereHas('vault', fn ($q) => $q->where('name', 'LIKE', '%personal%'))->groupBy('country')->select('country')->selectRaw('COUNT(*) as count_addresses')->having('count_addresses', '>', 5)->get()",
+        "Address::from('addresses as a')->join('address_types as at', 'a.address_type_id', '=', 'at.id')->join('vaults as v', 'a.vault_id', '=', 'v.id')->where('at.name', 'Hogar')->where('v.name', 'LIKE', '%personal%')->groupBy('a.country')->select('a.country')->selectRaw('COUNT(a.id) as count_addresses')->having('count_addresses', '>', 5)->get()"
+      ],
+      "expected_sqls": [
+        "SELECT a.country, COUNT(a.id) AS total_addresses_hogar FROM addresses a JOIN address_types at ON a.address_type_id = at.id JOIN vaults v ON a.vault_id = v.id WHERE at.name = 'Hogar' AND v.name LIKE '%personal%' GROUP BY a.country HAVING COUNT(a.id) > 5;",
+        "SELECT country, (SELECT COUNT(id) FROM addresses a2 JOIN address_types at2 ON a2.address_type_id = at2.id JOIN vaults v2 ON a2.vault_id = v2.id WHERE a2.country = a.country AND at2.name = 'Hogar' AND v2.name LIKE '%personal%') AS count_addresses FROM addresses a GROUP BY country HAVING count_addresses > 5;",
+        "SELECT a.country, COUNT(a.id) AS address_count FROM addresses a JOIN address_types at ON a.address_type_id = at.id JOIN vaults v ON a.vault_id = v.id WHERE at.name = 'Hogar' AND v.name LIKE '%personal%' GROUP BY a.country HAVING COUNT(a.id) > 5;"
+      ]
+    },
+    "id": "TEST-042"
+  },
+  {
+    "complexity": "complex",
+    "question": "Busca los eventos de línea de tiempo (timeline events) que contienen eventos de vida asociados a la emoción 'Alegría' y que, además, tienen participantes que trabajan en una empresa de tipo 'Financiera'.",
+    "gold_standards": {
+      "expected_model": "TimelineEvent",
+      "expected_relations": [
+        "lifeEvents.emotion",
+        "participants.company"
+      ],
+      "expected_orms": [
+        "TimelineEvent::whereHas('lifeEvents.emotion', function ($query) { $query->where('name', 'Alegría'); })->whereHas('participants.company', function ($query) { $query->where('type', 'Financiera'); })->get()",
+        "TimelineEvent::query()->whereHas('lifeEvents', fn ($q) => $q->whereHas('emotion', fn ($e) => $e->whereName('Alegría')))->whereHas('participants', fn ($q) => $q->whereHas('company', fn ($c) => $c->whereType('Financiera')))->get()",
+        "TimelineEvent::whereHas('lifeEvents.emotion', fn ($q) => $q->where('name', 'Alegría'))->whereHas('participants.company', fn ($q) => $q->where('type', 'Financiera'))->get()"
+      ],
+      "expected_sqls": [
+        "SELECT DISTINCT te.* FROM timeline_events te JOIN life_events le ON te.id = le.timeline_event_id JOIN emotions e ON le.emotion_id = e.id JOIN timeline_event_contact tec ON te.id = tec.timeline_event_id JOIN contacts c ON tec.contact_id = c.id JOIN companies co ON c.company_id = co.id WHERE e.name = 'Alegría' AND co.type = 'Financiera';",
+        "SELECT te.* FROM timeline_events te WHERE EXISTS (SELECT 1 FROM life_events le JOIN emotions e ON le.emotion_id = e.id WHERE le.timeline_event_id = te.id AND e.name = 'Alegría') AND EXISTS (SELECT 1 FROM timeline_event_contact tec JOIN contacts c ON tec.contact_id = c.id JOIN companies co ON c.company_id = co.id WHERE tec.timeline_event_id = te.id AND co.type = 'Financiera');",
+        "SELECT te.id, te.label FROM timeline_events te INNER JOIN life_events le ON te.id = le.timeline_event_id INNER JOIN emotions em ON le.emotion_id = em.id INNER JOIN timeline_event_contact te_c ON te.id = te_c.timeline_event_id INNER JOIN contacts co ON te_c.contact_id = co.id INNER JOIN companies comp ON co.company_id = comp.id WHERE em.name = 'Alegría' AND comp.type = 'Financiera' GROUP BY te.id, te.label;"
+      ]
+    },
+    "id": "TEST-043"
+  },
+  {
+    "complexity": "complex",
+    "question": "Obtén los contactos que tienen una fecha importante de tipo 'Cumpleaños' en el mes de 'Julio', y que pertenecen a un depósito (vault) de tipo 'Familia'.",
+    "gold_standards": {
+      "expected_model": "Contact",
+      "expected_relations": [
+        "importantDates.contactImportantDateType",
+        "vault"
+      ],
+      "expected_orms": [
+        "Contact::whereHas('importantDates', function ($query) { $query->whereMonth('day', 7)->whereHas('contactImportantDateType', fn ($q) => $q->where('label', 'Cumpleaños')); })->whereHas('vault', function ($query) { $query->where('type', 'Familia'); })->get()",
+        "Contact::query()->whereHas('importantDates', fn ($q) => $q->where('month', 7)->whereHas('contactImportantDateType', fn ($cidt) => $cidt->whereLabel('Cumpleaños')))->whereHas('vault', fn ($q) => $q->whereType('Familia'))->get()",
+        "Contact::whereHas('vault', fn ($q) => $q->where('type', 'Familia'))->whereHas('importantDates.contactImportantDateType', function ($query) { $query->where('contact_important_dates.month', 7)->where('contact_important_date_types.label', 'Cumpleaños'); })->get()"
+      ],
+      "expected_sqls": [
+        "SELECT DISTINCT c.* FROM contacts c JOIN contact_important_dates cid ON c.id = cid.contact_id JOIN contact_important_date_types cidt ON cid.contact_important_date_type_id = cidt.id JOIN vaults v ON c.vault_id = v.id WHERE cidt.label = 'Cumpleaños' AND cid.month = 7 AND v.type = 'Familia';",
+        "SELECT c.* FROM contacts c WHERE EXISTS (SELECT 1 FROM contact_important_dates cid JOIN contact_important_date_types cidt ON cid.contact_important_date_type_id = cidt.id WHERE cid.contact_id = c.id AND cidt.label = 'Cumpleaños' AND cid.month = 7) AND EXISTS (SELECT 1 FROM vaults v WHERE v.id = c.vault_id AND v.type = 'Familia');",
+        "SELECT c.id, c.first_name, c.last_name FROM contacts c INNER JOIN contact_important_dates cid ON c.id = cid.contact_id INNER JOIN contact_important_date_types cidt ON cid.contact_important_date_type_id = cidt.id INNER JOIN vaults v ON c.vault_id = v.id WHERE cidt.label = 'Cumpleaños' AND cid.month = 7 AND v.type = 'Familia' GROUP BY c.id, c.first_name, c.last_name;"
+      ]
+    },
+    "id": "TEST-044"
+  },
+  {
+    "complexity": "complex",
+    "question": "Encuentra los módulos que están asociados a una página de plantilla (template page) con el slug 'pagina-de-contacto' y que contienen filas (rows) que a su vez tienen campos (fields) que son 'requeridos' y de tipo 'texto_largo'.",
+    "gold_standards": {
+      "expected_model": "Module",
+      "expected_relations": [
+        "templatePages",
+        "rows.fields"
+      ],
+      "expected_orms": [
+        "Module::whereHas('templatePages', function ($query) { $query->where('slug', 'pagina-de-contacto'); })->whereHas('rows.fields', function ($query) { $query->where('required', true)->where('module_field_type', 'texto_largo'); })->get()",
+        "Module::query()->whereHas('templatePages', fn ($q) => $q->whereSlug('pagina-de-contacto'))->whereHas('rows', fn ($q) => $q->whereHas('fields', fn ($f) => $f->whereRequired(true)->where('module_field_type', 'texto_largo')))->get()",
+        "Module::whereHas('templatePages', fn ($q) => $q->where('slug', 'pagina-de-contacto'))->whereHas('rows.fields', fn ($q) => $q->where('required', 1)->where('module_field_type', 'texto_largo'))->get()"
+      ],
+      "expected_sqls": [
+        "SELECT DISTINCT m.* FROM modules m JOIN module_template_page mtp ON m.id = mtp.module_id JOIN template_pages tp ON mtp.template_page_id = tp.id JOIN module_rows mr ON m.id = mr.module_id JOIN module_row_fields mrf ON mr.id = mrf.module_row_id WHERE tp.slug = 'pagina-de-contacto' AND mrf.required = 1 AND mrf.module_field_type = 'texto_largo';",
+        "SELECT m.* FROM modules m WHERE EXISTS (SELECT 1 FROM module_template_page mtp JOIN template_pages tp ON mtp.template_page_id = tp.id WHERE mtp.module_id = m.id AND tp.slug = 'pagina-de-contacto') AND EXISTS (SELECT 1 FROM module_rows mr JOIN module_row_fields mrf ON mr.id = mrf.module_row_id WHERE mr.module_id = m.id AND mrf.required = 1 AND mrf.module_field_type = 'texto_largo');",
+        "SELECT m.id, m.name FROM modules m INNER JOIN module_template_page mtp ON m.id = mtp.module_id INNER JOIN template_pages tp ON mtp.template_page_id = tp.id INNER JOIN module_rows mr ON m.id = mr.module_id INNER JOIN module_row_fields mrf ON mr.id = mrf.module_row_id WHERE tp.slug = 'pagina-de-contacto' AND mrf.required = TRUE AND mrf.module_field_type = 'texto_largo' GROUP BY m.id, m.name;"
+      ]
+    },
+    "id": "TEST-045"
+  },
+  {
+    "complexity": "complex",
+    "question": "Lista las metas (goals) que han registrado más de diez streaks y que pertenecen a contactos cuya religión es 'Cristianismo'.",
+    "gold_standards": {
+      "expected_model": "Goal",
+      "expected_relations": [
+        "streaks",
+        "contact.religion"
+      ],
+      "expected_orms": [
+        "Goal::has('streaks', '>', 10)->whereHas('contact.religion', function ($query) { $query->where('name', 'Cristianismo'); })->get()",
+        "Goal::query()->withCount('streaks')->having('streaks_count', '>', 10)->whereHas('contact', fn ($q) => $q->whereHas('religion', fn ($r) => $r->whereName('Cristianismo')))->get()",
+        "Goal::whereHas('contact.religion', fn ($q) => $q->where('name', 'Cristianismo'))->has('streaks', '>', 10)->get()"
+      ],
+      "expected_sqls": [
+        "SELECT DISTINCT g.* FROM goals g JOIN streaks s ON g.id = s.goal_id JOIN contacts c ON g.contact_id = c.id JOIN religions r ON c.religion_id = r.id WHERE r.name = 'Cristianismo' GROUP BY g.id HAVING COUNT(s.id) > 10;",
+        "SELECT g.* FROM goals g WHERE (SELECT COUNT(s.id) FROM streaks s WHERE s.goal_id = g.id) > 10 AND EXISTS (SELECT 1 FROM contacts c JOIN religions r ON c.religion_id = r.id WHERE c.id = g.contact_id AND r.name = 'Cristianismo');",
+        "SELECT g.id, g.name FROM goals g INNER JOIN streaks s ON g.id = s.goal_id INNER JOIN contacts c ON g.contact_id = c.id INNER JOIN religions r ON c.religion_id = r.id WHERE r.name = 'Cristianismo' GROUP BY g.id, g.name HAVING COUNT(s.id) > 10;"
+      ]
+    },
+    "id": "TEST-046"
+  },
+  {
+    "complexity": "complex",
+    "question": "Busca los archivos de tipo 'imagen/jpeg' que están almacenados en depósitos (vaults) que contienen, en total, más de cincuenta archivos.",
+    "gold_standards": {
+      "expected_model": "File",
+      "expected_relations": [
+        "vault.files"
+      ],
+      "expected_orms": [
+        "File::where('mime_type', 'image/jpeg')->whereHas('vault', function ($query) { $query->has('files', '>', 50); })->get()",
+        "File::query()->whereMimeType('image/jpeg')->whereHas('vault', fn ($q) => $q->withCount('files')->having('files_count', '>', 50))->get()",
+        "File::where('mime_type', 'image/jpeg')->whereHas('vault', function ($query) { $query->select('id')->has('files', '>', 50); })->get()"
+      ],
+      "expected_sqls": [
+        "SELECT f.* FROM files f JOIN vaults v ON f.vault_id = v.id WHERE f.mime_type = 'image/jpeg' AND (SELECT COUNT(*) FROM files f2 WHERE f2.vault_id = v.id) > 50;",
+        "SELECT f.* FROM files f JOIN (SELECT vault_id, COUNT(id) AS file_count FROM files GROUP BY vault_id HAVING COUNT(id) > 50) AS v_counts ON f.vault_id = v_counts.vault_id WHERE f.mime_type = 'image/jpeg';",
+        "SELECT fil.id, fil.name, fil.mime_type FROM files fil INNER JOIN vaults va ON fil.vault_id = va.id WHERE fil.mime_type = 'image/jpeg' AND (SELECT COUNT(f_sub.id) FROM files f_sub WHERE f_sub.vault_id = va.id) > 50;"
+      ]
+    },
+    "id": "TEST-047"
+  },
+  {
+    "complexity": "complex",
+    "question": "Identifica los grupos de tipo 'Familia' que incluyen contactos cuyo primer nombre comienza con la letra 'A' y que no han sido marcados como eliminados.",
+    "gold_standards": {
+      "expected_model": "Group",
+      "expected_relations": [
+        "groupType",
+        "contacts"
+      ],
+      "expected_orms": [
+        "Group::whereHas('groupType', function ($query) { $query->where('label', 'Familia'); })->whereHas('contacts', function ($query) { $query->where('first_name', 'LIKE', 'A%')->where('can_be_deleted', false); })->get()",
+        "Group::query()->whereHas('groupType', fn ($q) => $q->whereLabel('Familia'))->whereHas('contacts', fn ($q) => $q->whereFirstName('LIKE', 'A%')->whereCanBeDeleted(false))->get()",
+        "Group::whereHas('groupType', fn ($q) => $q->where('label', 'Familia'))->whereHas('contacts', fn ($q) => $q->where('first_name', 'LIKE', 'A%')->where('can_be_deleted', 0))->get()"
+      ],
+      "expected_sqls": [
+        "SELECT DISTINCT g.* FROM groups g JOIN group_types gt ON g.group_type_id = gt.id JOIN contact_group cg ON g.id = cg.group_id JOIN contacts c ON cg.contact_id = c.id WHERE gt.label = 'Familia' AND c.first_name LIKE 'A%' AND c.can_be_deleted = 0;",
+        "SELECT g.* FROM groups g WHERE EXISTS (SELECT 1 FROM group_types gt WHERE gt.id = g.group_type_id AND gt.label = 'Familia') AND EXISTS (SELECT 1 FROM contact_group cg JOIN contacts c ON cg.contact_id = c.id WHERE cg.group_id = g.id AND c.first_name LIKE 'A%' AND c.can_be_deleted = 0);",
+        "SELECT gr.id, gr.name FROM groups gr INNER JOIN group_types gt ON gr.group_type_id = gt.id INNER JOIN contact_group cg ON gr.id = cg.group_id INNER JOIN contacts cont ON cg.contact_id = cont.id WHERE gt.label = 'Familia' AND cont.first_name LIKE 'A%' AND cont.can_be_deleted = FALSE GROUP BY gr.id, gr.name;"
+      ]
+    },
+    "id": "TEST-048"
+  },
+  {
+    "complexity": "complex",
+    "question": "Obtén las plantillas de posts (post templates) que pertenecen a una cuenta con un límite de almacenamiento de 1024 MB y que incluyen secciones de plantilla que no pueden ser eliminadas.",
+    "gold_standards": {
+      "expected_model": "PostTemplate",
+      "expected_relations": [
+        "account",
+        "postTemplateSections"
+      ],
+      "expected_orms": [
+        "PostTemplate::whereHas('account', function ($query) { $query->where('storage_limit_in_mb', 1024); })->whereHas('postTemplateSections', function ($query) { $query->where('can_be_deleted', false); })->get()",
+        "PostTemplate::query()->whereHas('account', fn ($q) => $q->whereStorageLimitInMb(1024))->whereHas('postTemplateSections', fn ($q) => $q->whereCanBeDeleted(false))->get()",
+        "PostTemplate::whereHas('account', fn ($q) => $q->where('storage_limit_in_mb', 1024))->whereHas('postTemplateSections', fn ($q) => $q->where('can_be_deleted', 0))->get()"
+      ],
+      "expected_sqls": [
+        "SELECT DISTINCT pt.* FROM post_templates pt JOIN accounts a ON pt.account_id = a.id JOIN post_template_sections pts ON pt.id = pts.post_template_id WHERE a.storage_limit_in_mb = 1024 AND pts.can_be_deleted = 0;",
+        "SELECT pt.* FROM post_templates pt WHERE EXISTS (SELECT 1 FROM accounts a WHERE a.id = pt.account_id AND a.storage_limit_in_mb = 1024) AND EXISTS (SELECT 1 FROM post_template_sections pts WHERE pts.post_template_id = pt.id AND pts.can_be_deleted = 0);",
+        "SELECT pt.id, pt.label FROM post_templates pt INNER JOIN accounts acc ON pt.account_id = acc.id INNER JOIN post_template_sections pts ON pt.id = pts.post_template_id WHERE acc.storage_limit_in_mb = 1024 AND pts.can_be_deleted = FALSE GROUP BY pt.id, pt.label;"
+      ]
+    },
+    "id": "TEST-049"
+  },
+  {
+    "complexity": "complex",
+    "question": "Lista todas las direcciones de correo electrónico de tipo 'Correo Personal' de contactos de género 'Femenino' cuyo primer nombre contenga 'Maria'.",
+    "gold_standards": {
+      "expected_model": "ContactInformation",
+      "expected_relations": [
+        "contactInformationType",
+        "contact.gender"
+      ],
+      "expected_orms": [
+        "ContactInformation::whereHas('contactInformationType', function ($query) { $query->where('name', 'Correo Personal')->where('protocol', 'email'); })->whereHas('contact.gender', function ($query) { $query->where('name', 'Femenino'); })->whereHas('contact', function ($query) { $query->where('first_name', 'LIKE', '%Maria%'); })->select('data')->get()",
+        "ContactInformation::query()->whereHas('contactInformationType', fn ($q) => $q->whereName('Correo Personal')->whereProtocol('email'))->whereHas('contact', fn ($q) => $q->whereFirstName('LIKE', '%Maria%')->whereHas('gender', fn ($g) => $g->whereName('Femenino')))->select('data')->get()",
+        "ContactInformation::select('data')->whereHas('contactInformationType', fn ($q) => $q->where('name', 'Correo Personal')->where('protocol', 'email'))->whereHas('contact', fn ($q) => $q->where('first_name', 'LIKE', '%Maria%')->whereHas('gender', fn ($g) => $g->where('name', 'Femenino')))->get()"
+      ],
+      "expected_sqls": [
+        "SELECT DISTINCT ci.data FROM contact_information ci JOIN contact_information_types cit ON ci.type_id = cit.id JOIN contacts c ON ci.contact_id = c.id JOIN genders g ON c.gender_id = g.id WHERE cit.name = 'Correo Personal' AND cit.protocol = 'email' AND g.name = 'Femenino' AND c.first_name LIKE '%Maria%';",
+        "SELECT ci.data FROM contact_information ci WHERE EXISTS (SELECT 1 FROM contact_information_types cit WHERE cit.id = ci.type_id AND cit.name = 'Correo Personal' AND cit.protocol = 'email') AND EXISTS (SELECT 1 FROM contacts c JOIN genders g ON c.gender_id = g.id WHERE c.id = ci.contact_id AND g.name = 'Femenino' AND c.first_name LIKE '%Maria%');",
+        "SELECT ci.data FROM contact_information ci INNER JOIN contact_information_types cit ON ci.type_id = cit.id INNER JOIN contacts co ON ci.contact_id = co.id INNER JOIN genders gen ON co.gender_id = gen.id WHERE cit.name = 'Correo Personal' AND cit.protocol = 'email' AND gen.name = 'Femenino' AND co.first_name LIKE '%Maria%' GROUP BY ci.data;"
+      ]
+    },
+    "id": "TEST-050"
+  }
+]
